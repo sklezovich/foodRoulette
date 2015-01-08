@@ -15,7 +15,7 @@ import java.lang.Math;
 
 public class MainActivity extends ActionBarActivity {
 	
-	//returns a random long between min and max
+	//returns a random long between min and max!
 	long randomWithRange(int min, int max)
 	{
 	   int range = (max - min) + 1;     
