@@ -27,7 +27,7 @@ public class WheelTesting extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final float startPoint = 11.25f;  //initial angle of wheel view
-        final RotateAnimation anim = new RotateAnimation(startPoint, 450f - startPoint, //2nd float sets target angle
+        final RotateAnimation anim = new RotateAnimation(startPoint, 450f + startPoint, //2nd float sets target angle
     	        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         final Button spinButton = (Button) findViewById(R.id.button1);
         final Button stopButton = (Button) findViewById(R.id.button2);
