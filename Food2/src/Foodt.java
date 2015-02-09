@@ -145,8 +145,8 @@ public class Foodt {
 
 		System.out.println("Test Complete\n");
 		*/
-		Foodf.setRatings(4.1);
-		Foodf.searchByRating();
+		//Foodf.setRatings(4.1);
+		//Foodf.searchByRating();
 		int i = 1;
 		for (Foodies f : Foodf.Random(args)){
 			System.out.print(i+". ");

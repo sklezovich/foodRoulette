@@ -86,7 +86,7 @@ public class Foodf {
 			YelpAPI.setTerm(pref);
 			YelpAPI yelper = new YelpAPI(CONSUMER_KEY, CONSUMER_SECRET, TOKEN, TOKEN_SECRET);
 			YelpAPI.YelpAPICLI yelperApiCli = new YelpAPI.YelpAPICLI();
-			new JCommander(yelperApiCli, args);
+			//new JCommander(yelperApiCli, args);
 			
 			for (Object firstB :YelpAPI.queryAPI(yelper, yelperApiCli)){
 				JSONObject b = (JSONObject) firstB;
