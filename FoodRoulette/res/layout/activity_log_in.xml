@@ -14,6 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="33dp"
         android:text="Email" />
 
     <EditText
@@ -34,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText1"
         android:layout_below="@+id/editText1"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="45dp"
         android:text="Password" />
 
     <EditText
@@ -47,24 +49,35 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/ChangeDateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="59dp"
         android:height="10dp"
         android:text="Sign In"
         android:textSize="15sp"
-        android:width="25dp" />
+        android:width="25dp"
+        android:onClick="onClick" />
+
+    <Button
+        android:id="@+id/forgotpasswordbutton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_below="@+id/ChangeDateButton"
+        android:layout_marginTop="37dp"
+        android:text="Forgot Password?" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="108dp"
+        android:layout_alignLeft="@+id/forgotpasswordbutton"
+        android:layout_below="@+id/forgotpasswordbutton"
+        android:layout_marginTop="55dp"
         android:text="New?" />
 
     <Button
@@ -73,18 +86,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView3"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_marginTop="18dp"
-        android:text="Create Account" />
-
-    <Button
-        android:id="@+id/forgotpasswordbutton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="22dp"
-        android:text="Forgot Password?" />
+        android:layout_below="@+id/textView3"
+        android:text="Create New Account"
+        android:onClick="onClick" />
+    	
 
 </RelativeLayout>
