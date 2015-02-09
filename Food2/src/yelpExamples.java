@@ -109,6 +109,10 @@ public class yelpExamples {
 
 https://github.com/Yelp/yelp-api/commit/76b96c7277f6e7bb38b510d8e9deec3154bf2053
 
+http://imnes.blogspot.com/2011/01/how-to-use-yelp-v2-from-java-including.html
+
+https://docs.google.com/file/d/0BxrV1XS12N53NDVhZTk1MzMtNWRlMy00MDg0LTkyNGYtYjNhMWZjZDc2Yzgz/edit?ddrp=1&hl=en
+
 var url = 'https://gdata.youtube.com/feeds/api/videos?'
     + 'q=skateboarding+dog'
     + '&start-index=21'
