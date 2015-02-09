@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
@@ -123,10 +124,10 @@ public class YelpAPI {
 	 * @return <tt>String</tt> JSON Response
 	 */
 	
-	public String searchByBusinessId(String businessID) {
+	/*public String searchByBusinessId(String businessID) {
 		OAuthRequest request = createOAuthRequest(BUSINESS_PATH + "/" + businessID);
 		return sendRequestAndGetResponse(request);
-	}
+	}*/
 	
 	/**
 	 * Creates and returns an {@link OAuthRequest} based on the API endpoint specified.
