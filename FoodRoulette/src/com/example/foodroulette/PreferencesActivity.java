@@ -158,19 +158,17 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
         @Override
         protected void onPostExecute(String result) {
         	for (Foodies f: listy){
-        		
-        		TextView txt = (TextView) findViewById(R.id.output);
-        		txt.setText(f.toString());
+        		Log.v("PA",f.toString());
         	}
         }
         
-        @Override
+       /* @Override
         protected void onPreExecute() {
         	
         }
 
         @Override
-        protected void onProgressUpdate(Void... values) {}
+        protected void onProgressUpdate(Void... values) {}*/
     }
     
     @Override
@@ -202,24 +200,23 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
     public static ArrayList<String> getCuisines() {
     	return cuisine;
     }
-	public void onItemSelected(AdapterView<?> parent, View view, 
-        int pos, long id) {
+    
+	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         switch (parent.getId()) {
-        case R.id.spinner_budget:
+        	case R.id.spinner_budget:
         	budget = pos + 1;
         	budgetValue.setText(budget + "/ 5");
             break;
         }
 	}  
 
-	public void onNothingSelected(AdapterView<?> parent) {
-	}
+	/*public void onNothingSelected(AdapterView<?> parent) {
+	}*/
 	
 	public void onRatingChanged(RatingBar ratingBar, float rating,
 		boolean fromTouch) {
 		numstars = rating;
 		ratingsValue.setText(numstars + " / 5");
-			
 	}
 
 	@Override
@@ -227,21 +224,19 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
 			boolean fromUser) {	
 	}
 
-	@Override
+	/*@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-	}		
+	}*/		
 	
-	public void onClick(View v) {
-		
+	public void onClick(View v) {	
 		switch(v.getId()) {
 			case R.id.button_SPIN:
-				Intent intent = new Intent (this, PrintPLease.class);
-				startActivity(intent);
-				
+				//Intent intent = new Intent (this, PrintPLease.class);
+				//startActivity(intent);
 				
 				ArrayList<String> ip = new ArrayList<String> ();
 				ip = cuisine;
@@ -249,9 +244,6 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
 				preferencesThread preT = new preferencesThread(this);
 				preT.execute("");
 				
-
-				//int i = 1;
-				//i++;
 			break;
 	
 		}
