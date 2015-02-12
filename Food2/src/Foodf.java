@@ -74,7 +74,7 @@ public class Foodf {
 		getListy(args);
 		searchByRating();
 		Collections.shuffle((List<?>) done); 
-		return done;//make random list altering  
+		return done;  
 	}
 	
 	//search through cuisines to produce a list of food restaurants from yelp
@@ -82,11 +82,10 @@ public class Foodf {
 		Collection<Foodies> listy = new ArrayList<Foodies>();
 		YelpAPI.setLocation("Seattle", "WA");
 		for (String pref : preferences){
-			YelpAPI.setLimit(6);
+			YelpAPI.setLimit(5);
 			YelpAPI.setTerm(pref);
 			YelpAPI yelper = new YelpAPI(CONSUMER_KEY, CONSUMER_SECRET, TOKEN, TOKEN_SECRET);
 			YelpAPI.YelpAPICLI yelperApiCli = new YelpAPI.YelpAPICLI();
-			//new JCommander(yelperApiCli, args);
 			
 			for (Object firstB :YelpAPI.queryAPI(yelper, yelperApiCli)){
 				JSONObject b = (JSONObject) firstB;
@@ -114,8 +113,8 @@ public class Foodf {
 	public static void searchByRating(){
 		Collection<Foodies> temp = new ArrayList<Foodies>();
 		for (Foodies f : done){
-			if ((f.rating() >= (ratings))){ //|| (f.rating() < (ratings - 1))){
-				temp.add(f);	//get rid of that food object
+			if ((f.rating() >= (ratings))){ 
+				temp.add(f);
 			}
 		}
 		done = temp;
@@ -123,19 +122,19 @@ public class Foodf {
 	
 	//allows for the calculation of distance from lat and lng coordinates
 	public static double getDistance(String location){
-		double lng1 = -122.301436; //using garfield
-		double lat1 = 47.605387; //using garfield
+		double lng1 = -122.301436; 
+		double lat1 = 47.605387; 
 		
-		int startIndex1 = location.indexOf("longitude");//finds the start value of this word
-		lng = location.substring(startIndex1+11, startIndex1+22);//getting the longitude component
+		int startIndex1 = location.indexOf("longitude");
+		lng = location.substring(startIndex1+11, startIndex1+22);
 		int startIndex2 = location.indexOf("latitude");
-		lat = location.substring(startIndex2+10, startIndex2+19);//getting the latitude component	
+		lat = location.substring(startIndex2+10, startIndex2+19);
 
 		double lng2 = Double.parseDouble(lng);
 		double lat2 = Double.parseDouble(lat);
 
-		double R = 6371; // km
-		double vlat1 = lat1*Math.PI/180; //radians = degrees*pi/180
+		double R = 6371; 
+		double vlat1 = lat1*Math.PI/180; 
 		double vlat2 = lat2*Math.PI/180;
 		double changelat = (lat2-lat1)*Math.PI/180;
 		double changelng = (lng2-lng1)*Math.PI/180;
