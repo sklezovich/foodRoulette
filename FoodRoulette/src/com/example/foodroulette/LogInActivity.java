@@ -43,6 +43,7 @@ public class LogInActivity extends ActionBarActivity implements OnClickListener{
 	}
 	
 	public void onClick(View arg0) {
+		
 		Intent intent = new Intent (this, UserAccountActivity.class);
 		startActivity(intent);
 	}

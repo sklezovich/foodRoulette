@@ -44,34 +44,6 @@ public class FoodfActivity {
 		preferences = new ArrayList<String>();
 	}
 	
-
-	/*	@Override
-	 * protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_foodfactivity);
-		
-		preferences = new ArrayList<String>();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.foodf, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}*/
-	
 	//sets imported preferences to use as preferences
 		public static void setPreferences (ArrayList<String> ipreferences){
 				preferences = ipreferences;
@@ -103,37 +75,9 @@ public class FoodfActivity {
 			Collections.shuffle((List<?>) done); 
 			return done;//make random list altering  
 		}
-		
-		//search through cuisines to produce a list of food restaurants from yelp
-		public static void listy(String[] args){
-			Collection<Foodies> listy = new ArrayList<Foodies>();
-			YelpAPI.setLocation("Seattle", "WA");
-			for (String pref : preferences){
-				YelpAPI.setLimit(5);
-				YelpAPI.setTerm(pref);
-				YelpAPI yelper = new YelpAPI(CONSUMER_KEY, CONSUMER_SECRET, TOKEN, TOKEN_SECRET);
-				YelpAPI.YelpAPICLI yelperApiCli = new YelpAPI.YelpAPICLI();
-				new JCommander(yelperApiCli, args);
-				
-				for (Object firstB :YelpAPI.queryAPI(yelper, yelperApiCli)){
-					JSONObject b = (JSONObject) firstB;
-					cuisine = pref;
-					name = b.get("name").toString();
-					price = 0;
-					rating = Double.parseDouble(b.get("rating").toString());
-					String location = b.get("location").toString();
-					distance = getDistance(location);
-
-					Foodies neuw = new Foodies (cuisine,name,price,rating,distance,lat,lng);
-					listy.add(neuw);
-				}
-			}
-			done = listy;
-		}
 
 		//allows access to the list
 		public static Collection<Foodies> getListy(String[] args){
-			listy(args);
 			return done;
 		}
 		

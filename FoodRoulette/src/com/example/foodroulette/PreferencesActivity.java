@@ -147,7 +147,6 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
 						neuw = neuwy;
 						listy.add(neuw);
 					}
-					//return neuw.toString();
 				}
 				done = listy;
             } catch (InterruptedException e) {
