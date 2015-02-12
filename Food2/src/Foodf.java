@@ -82,7 +82,7 @@ public class Foodf {
 		Collection<Foodies> listy = new ArrayList<Foodies>();
 		YelpAPI.setLocation("Seattle", "WA");
 		for (String pref : preferences){
-			YelpAPI.setLimit(5);
+			YelpAPI.setLimit(6);
 			YelpAPI.setTerm(pref);
 			YelpAPI yelper = new YelpAPI(CONSUMER_KEY, CONSUMER_SECRET, TOKEN, TOKEN_SECRET);
 			YelpAPI.YelpAPICLI yelperApiCli = new YelpAPI.YelpAPICLI();

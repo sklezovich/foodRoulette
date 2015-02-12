@@ -124,7 +124,7 @@ public class Foodt {
 			ArrayList<String> ipreferences = new ArrayList<String> (); // creates an arraylist
 		//ipreferences.add("Italian");//does find and print correctly
 		ipreferences.add("Korean");//should not be found later on
-		ipreferences.add("Japanese");//finds it but cannot break foreach loop to next line
+		ipreferences.add("Hot Dog");//finds it but cannot break foreach loop to next line
 		//ipreferences.add("Diner");
 			Foodf.setPreferences(ipreferences);
 		//System.out.println(Foodf.getPreferences());

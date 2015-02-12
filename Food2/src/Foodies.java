@@ -58,8 +58,8 @@ public class Foodies {
 	@Override
     //prints out rank, suit, and point value 
     public String toString() {
-       return (name+" is "+cuisine+" and has a rating of "+rating+". Pricing is "
-    		   +pricing+" and it is "+distance+" miles away. Latitude is "+lat+" and the "
+       return (name+" is "+cuisine+" and has a rating of "+rating+". Pricing is non-existant "+
+       		"and it is "+distance+" miles away. Latitude is "+lat+" and the "
     		   +"Longitude is "+lng+".");
     }
 }
