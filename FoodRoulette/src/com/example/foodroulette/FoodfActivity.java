@@ -70,10 +70,10 @@ public class FoodfActivity {
 		}
 		
 		//call method which produces the randomc
-		public static Collection<Foodies> Random(String[] args){
-			getListy(args);
-			Collections.shuffle((List<?>) done); 
-			return done;//make random list altering  
+		public static Collection<Foodies> Random(String[] args, Collection<Foodies> d, double n){
+			searchByRating(d, n);
+			Collections.shuffle((List<?>) d); 
+			return d;//make random list altering  
 		}
 
 		//allows access to the list
@@ -82,10 +82,10 @@ public class FoodfActivity {
 		}
 		
 		//allows to limit search by the ratings
-		public void searchByRating(){
-			for (Foodies f : done){
-				if (f.rating() > (ratings + 1)){
-					done.remove(f);	//get rid of that food object
+		public static void searchByRating(Collection<Foodies> d, double n){
+			for (Foodies f : d){
+				if (f.rating() >= (n)){
+					d.remove(f);	//get rid of that food object
 				}
 			}
 		}
@@ -96,9 +96,9 @@ public class FoodfActivity {
 			double lat1 = 47.605387; //using garfield
 			
 			int startIndex1 = location.indexOf("longitude");//finds the start value of this word
-			lng = location.substring(startIndex1+11, startIndex1+22);//getting the longitude component
+			lng = location.substring(startIndex1+11, startIndex1+19);//getting the longitude component
 			int startIndex2 = location.indexOf("latitude");
-			lat = location.substring(startIndex2+10, startIndex2+19);//getting the latitude component	
+			lat = location.substring(startIndex2+10, startIndex2+18);//getting the latitude component	
 
 			double lng2 = Double.parseDouble(lng);
 			double lat2 = Double.parseDouble(lat);

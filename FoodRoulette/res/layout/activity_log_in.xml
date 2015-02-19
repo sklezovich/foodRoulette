@@ -16,60 +16,52 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="23dp"
         android:layout_marginTop="33dp"
-        android:text="Email" />
+        android:text="Email"
+        android:textSize="25sp" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/editTextUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:ems="10"
-        android:inputType="textEmailAddress" >
+        android:inputType="textEmailAddress" />
 
-        <requestFocus />
-    </EditText>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextUsername"
+        android:layout_below="@+id/editTextUsername"
+        android:layout_marginTop="23dp"
+        android:text="Password"
+        android:textSize="25sp" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword" >
+
+        <requestFocus />
+    </EditText>
 
     <Button
-        android:id="@+id/ChangeDateButton"
+        android:id="@+id/SignInButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/editTextPassword"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="47dp"
         android:height="10dp"
+        android:onClick="onClick"
         android:text="Sign In"
         android:textSize="15sp"
-        android:width="25dp"
-        android:onClick="onClick" />
-
-    <Button
-        android:id="@+id/forgotpasswordbutton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_below="@+id/ChangeDateButton"
-        android:layout_marginTop="37dp"
-        android:text="Forgot Password?" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/forgotpasswordbutton"
-        android:layout_below="@+id/forgotpasswordbutton"
-        android:layout_marginTop="55dp"
-        android:text="New?" />
+        android:width="25dp" />
 
     <Button
         android:id="@+id/createaccountbutton"
@@ -77,17 +69,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/textView3"
-        android:text="Create New Account"
-        android:onClick="onClick" />
+        android:layout_below="@+id/SignInButton"
+        android:layout_marginTop="144dp"
+        android:onClick="onClick"
+        android:text="Create New Account" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="20dp"
-        android:text="Password" />
+        android:layout_alignBottom="@+id/createaccountbutton"
+        android:layout_alignLeft="@+id/forgotpasswordbutton"
+        android:layout_marginBottom="44dp"
+        android:text="New?"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/forgotpasswordbutton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView3"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_marginBottom="33dp"
+        android:text="Forgot Password?" />
 
 </RelativeLayout>

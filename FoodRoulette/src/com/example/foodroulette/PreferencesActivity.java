@@ -1,5 +1,5 @@
 package com.example.foodroulette;
-
+//use use use use
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -129,6 +129,7 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
                 Thread.sleep(1000);
                 YelpAPI.setLocation("Seattle", "WA");
 				for (String pref : preferences){
+					FoodfActivity.setRatings(numstars);
 					YelpAPI.setLimit(5);
 					YelpAPI.setTerm(pref);
 					YelpAPI yelper = new YelpAPI(CONSUMER_KEY, CONSUMER_SECRET, TOKEN, TOKEN_SECRET);
@@ -157,18 +158,21 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
 		
         @Override
         protected void onPostExecute(String result) {
-        	for (Foodies f: listy){
-        		Log.v("PA",f.toString());
+        	int i = 1;
+        	for (Foodies f: FoodfActivity.Random(args,done,numstars)){
+        		//System.out.println(f);
+        		Log.v("PA",i+". "+f.toString());
+        		i++;
         	}
         }
         
-       /* @Override
+       @Override
         protected void onPreExecute() {
         	
         }
 
         @Override
-        protected void onProgressUpdate(Void... values) {}*/
+        protected void onProgressUpdate(Void... values) {}
     }
     
     @Override
@@ -210,8 +214,8 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
         }
 	}  
 
-	/*public void onNothingSelected(AdapterView<?> parent) {
-	}*/
+	public void onNothingSelected(AdapterView<?> parent) {
+	}
 	
 	public void onRatingChanged(RatingBar ratingBar, float rating,
 		boolean fromTouch) {
@@ -224,19 +228,17 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
 			boolean fromUser) {	
 	}
 
-	/*@Override
+	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-	}*/		
+	}		
 	
 	public void onClick(View v) {	
 		switch(v.getId()) {
 			case R.id.button_SPIN:
-				//Intent intent = new Intent (this, PrintPLease.class);
-				//startActivity(intent);
 				
 				ArrayList<String> ip = new ArrayList<String> ();
 				ip = cuisine;
