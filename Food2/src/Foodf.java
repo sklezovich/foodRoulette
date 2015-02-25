@@ -26,7 +26,8 @@ public class Foodf {
 	private static String lng;
 	
 	private static Collection<String> preferences;
-	private static double ratings;
+	//private static double ratings = 0.0;
+	private static double r;
 	private static int pricings;
 	private static double distances;
 	
@@ -51,7 +52,8 @@ public class Foodf {
 	
 	//sets imported ratings to use as ratings variable for narrowing
 	public static void setRatings (double irating){
-			ratings = irating;
+			//ratings = irating;
+			r = irating;
 	}
 	
 	//sets imported pricings to use as pricings variable for narrowing
@@ -72,7 +74,7 @@ public class Foodf {
 	//call method which produces the randomc
 	public static Collection<Foodies> Random(String[] args){
 		getListy(args);
-		searchByRating();
+		//done = searchByRating();
 		Collections.shuffle((List<?>) done); 
 		return done;  
 	}
@@ -110,15 +112,7 @@ public class Foodf {
 	}
 	
 	//allows to limit search by the ratings
-	public static void searchByRating(){
-		Collection<Foodies> temp = new ArrayList<Foodies>();
-		for (Foodies f : done){
-			if ((f.rating() >= (ratings))){ 
-				temp.add(f);
-			}
-		}
-		done = temp;
-	}
+	
 	
 	//allows for the calculation of distance from lat and lng coordinates
 	public static double getDistance(String location){
