@@ -97,14 +97,14 @@ public class WheelTesting extends ActionBarActivity {
             	findViewById(R.id.imageView1).setRotation(90 + startPoint);
             }});
     
-      //Resets wheel orientation *FOR TESTING - NOT RELEASE VERSION*
+        //Resets wheel orientation *FOR TESTING - NOT RELEASE VERSION*
         resetButton.setOnClickListener(new View.OnClickListener() {
         	@TargetApi(14)
             public void onClick(View v) {
         		findViewById(R.id.imageView1).setRotation(startPoint);  //Sets initial angle (resets to start)
             }
         });
-        }
+    }
     	
 
     @Override
