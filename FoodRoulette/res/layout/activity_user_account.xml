@@ -15,64 +15,8 @@
         android:layout_alignLeft="@+id/displayDateText"
         android:layout_alignParentTop="true"
         android:layout_marginTop="27dp"
-        android:text="Email" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/BirthdayDatePicker"
-        android:layout_alignTop="@+id/textView1"
-        android:ems="10"
-        android:inputType="textEmailAddress" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="15dp"
-        android:text="Password" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignTop="@+id/textView2"
-        android:ems="10"
-        android:inputType="textPassword" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="19dp"
-        android:text="Confirm Password" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignTop="@+id/textView3"
-        android:ems="10"
-        android:inputType="textPassword" />
-
-    <DatePicker
-        android:id="@+id/BirthdayDatePicker"
-        android:layout_width="500dp"
-        android:layout_height="200dp"
-        android:layout_below="@+id/editText3"
-        android:layout_centerHorizontal="true"
-        android:scaleX="0.7"
-        android:scaleY="0.7" />
+        android:text="Email"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/displayDateText"
@@ -82,15 +26,6 @@
         android:layout_alignLeft="@+id/BirthdayDatePicker"
         android:layout_marginBottom="26dp"
         android:text="0" />
-
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_below="@+id/textView4"
-        android:textSize="15sp"
-        android:text="Male" />
 
     <CheckBox
         android:id="@+id/checkBox2"
@@ -109,16 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/BirthdayDatePicker"
         android:layout_alignLeft="@+id/BirthdayDatePicker"
+        android:layout_alignRight="@+id/textView3"
         android:text="Gender" />
-
-    <Button
-        android:id="@+id/ChangeDateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/checkBox2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:text="Change Date" />
 
     <Button
         android:id="@+id/CreateAccountButton"
@@ -128,5 +55,107 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:text="Create Account" />
+
+    <Button
+        android:id="@+id/ChangeDateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/CreateAccountButton"
+        android:layout_alignLeft="@+id/CreateAccountButton"
+        android:text="Change Date" />
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ChangeDateButton"
+        android:layout_toRightOf="@+id/displayDateText"
+        android:text="Male"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textSize="25sp" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_below="@+id/editText1"
+        android:text="Password"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_below="@+id/editText2"
+        android:layout_marginTop="26dp"
+        android:text="Confirm Password"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textSize="25sp" />
+
+    <DatePicker
+        android:id="@+id/BirthdayDatePicker"
+        android:layout_width="500dp"
+        android:layout_height="200dp"
+        android:layout_above="@+id/checkBox2"
+        android:layout_alignParentLeft="true"
+        android:scaleX="1"
+        android:scaleY="0.8" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkBox1"
+        android:layout_alignRight="@+id/spinner3"
+        android:layout_below="@+id/editText3"
+        android:layout_marginTop="52dp" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignTop="@+id/spinner1"
+        android:layout_toRightOf="@+id/textView2" />
+
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText3"
+        android:layout_toRightOf="@+id/displayDateText" />
 
 </RelativeLayout>

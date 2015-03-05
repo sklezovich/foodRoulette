@@ -11,6 +11,8 @@ import org.json.simple.JSONObject;
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
 
+import android.util.Log;
+
 import com.beust.jcommander.JCommander;
 
 public class FoodfActivity {
@@ -69,11 +71,26 @@ public class FoodfActivity {
 			return preferences;
 		}
 		
+		//allows for the return of latitude
+		public static String getLat(){
+			return lat;
+		}
+		
+		//allows for the return of longitude
+		public static String getLng(){
+			return lng;
+		}
+		
 		//call method which produces the randomc
 		public static Collection<Foodies> Random(String[] args, Collection<Foodies> d, double n){
-			searchByRating(d, n);
-			Collections.shuffle((List<?>) d); 
-			return d;//make random list altering  
+			Collection<Foodies> blah;
+			if (d.size()>0){
+				blah = searchByRating(d, n);
+				Collections.shuffle((List<?>) blah);
+			} else {
+				return d;
+			}
+			return blah;//make random list altering  
 		}
 
 		//allows access to the list
@@ -82,12 +99,14 @@ public class FoodfActivity {
 		}
 		
 		//allows to limit search by the ratings
-		public static void searchByRating(Collection<Foodies> d, double n){
+		public static Collection<Foodies> searchByRating(Collection<Foodies> d, double n){
+			Collection <Foodies> temp = new ArrayList<Foodies>();
 			for (Foodies f : d){
 				if (f.rating() >= (n)){
-					d.remove(f);	//get rid of that food object
+					temp.add(f);	//get rid of that food object
 				}
 			}
+			return temp;
 		}
 		
 		//allows for the calculation of distance from lat and lng coordinates

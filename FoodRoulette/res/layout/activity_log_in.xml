@@ -64,7 +64,7 @@
         android:width="25dp" />
 
     <Button
-        android:id="@+id/createaccountbutton"
+        android:id="@+id/CreateAccountBtn"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,24 +74,23 @@
         android:onClick="onClick"
         android:text="Create New Account" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/createaccountbutton"
-        android:layout_alignLeft="@+id/forgotpasswordbutton"
-        android:layout_marginBottom="44dp"
-        android:text="New?"
-        android:textSize="25sp" />
-
     <Button
         android:id="@+id/forgotpasswordbutton"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView3"
         android:layout_alignRight="@+id/textView2"
-        android:layout_marginBottom="33dp"
+        android:layout_below="@+id/SignInButton"
         android:text="Forgot Password?" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/CreateAccountBtn"
+        android:layout_alignLeft="@+id/forgotpasswordbutton"
+        android:layout_marginBottom="46dp"
+        android:text="New?"
+        android:textSize="25sp" />
 
 </RelativeLayout>

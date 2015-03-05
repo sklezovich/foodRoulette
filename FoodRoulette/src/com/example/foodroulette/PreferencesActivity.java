@@ -125,12 +125,20 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
         
 		@Override
         protected String doInBackground(String... params) {
+			Log.v("blah","checky checky checky");
         	try {
                 Thread.sleep(1000);
+                Log.v("blah","checky checky checky");
                 YelpAPI.setLocation("Seattle", "WA");
 				for (String pref : preferences){
-					FoodfActivity.setRatings(numstars);
-					YelpAPI.setLimit(5);
+					try {
+						YelpAPI.setLimit(10);
+						Log.v("blah","ten");
+					} catch (Exception e) {
+						Log.v(pref, "Lookie here "+e.toString());
+					}
+					
+					
 					YelpAPI.setTerm(pref);
 					YelpAPI yelper = new YelpAPI(CONSUMER_KEY, CONSUMER_SECRET, TOKEN, TOKEN_SECRET);
 					YelpAPI.YelpAPICLI yelperApiCli = new YelpAPI.YelpAPICLI();
@@ -144,23 +152,25 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
 						rating = Double.parseDouble(b.get("rating").toString());
 						String location = b.get("location").toString();
 						distancey = FoodfActivity.getDistance(location);
+						lat = FoodfActivity.getLat();
+						lng = FoodfActivity.getLng();
 						Foodies neuwy = new Foodies (cuisiney,name,price,rating,distancey,lat,lng);
 						neuw = neuwy;
 						listy.add(neuw);
 					}
 				}
 				done = listy;
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
 			}
-            return null;
+            return "";
         }
 		
         @Override
         protected void onPostExecute(String result) {
         	int i = 1;
-        	for (Foodies f: FoodfActivity.Random(args,done,numstars)){
-        		//System.out.println(f);
+        	Collection<Foodies> whatever = FoodfActivity.Random(args,done,numstars);
+        	for (Foodies f: whatever){
         		Log.v("PA",i+". "+f.toString());
         		i++;
         	}

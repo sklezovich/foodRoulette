@@ -14,8 +14,10 @@ import android.widget.Toast;
 public class LogInActivity extends ActionBarActivity implements OnClickListener{
 
 	private Button SignInButton;
+	private Button CreateAccountBtn;
 	private EditText  username;
 	private EditText  password;
+	private int attempts;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,8 @@ public class LogInActivity extends ActionBarActivity implements OnClickListener{
 		
 		SignInButton = (Button) findViewById(R.id.SignInButton);
 		SignInButton.setOnClickListener((OnClickListener) this);
+		CreateAccountBtn = (Button) findViewById(R.id.CreateAccountBtn);
+		CreateAccountBtn.setOnClickListener((OnClickListener) this);
 		username = (EditText) findViewById(R.id.editTextUsername);
 		password = (EditText) findViewById(R.id.editTextPassword);
 	}
@@ -46,25 +50,35 @@ public class LogInActivity extends ActionBarActivity implements OnClickListener{
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
 	
-	public void onClick(View arg0) {
-//	      if(username.getText().toString().equals("admin") && 
-//	    	      password.getText().toString().equals("admin")){
-//	    	      Toast.makeText(getApplicationContext(), "Redirecting...", 
-//	    	      Toast.LENGTH_SHORT).show();
+	public void onClick(View v) {
+		switch (v.getId()) { 
+			case R.id.CreateAccountBtn:
 	    	      Intent intent = new Intent (this, UserAccountActivity.class);
 	    	      startActivity(intent);
-//	      }
-//	      else{
-//	    	   Toast.makeText(getApplicationContext(), "Wrong Credentials",
-//	    	   Toast.LENGTH_SHORT).show();
+	    	break;
+			case R.id.SignInButton:
+	      		if(username.getText().toString().equals("admin") && 
+	    	    	password.getText().toString().equals("admin")){
+	    	      	Toast.makeText(getApplicationContext(), "Redirecting...", 
+	    	      	Toast.LENGTH_SHORT).show();
+	    	      	Intent intent1 = new Intent (this, PreferencesActivity.class);
+	    	      	startActivity(intent1);
+
+	      		}
+	      		else{
+	    	   		Toast.makeText(getApplicationContext(), "Wrong Credentials",
+	    	   		Toast.LENGTH_SHORT).show();
 	    	   
-//	    	   attempts.setBackgroundColor(Color.RED);	
-//	    	   attempts.setText(Integer.toString(counter));
-//	    	   	if(counter==0){
-//	    	   		login.setEnabled(false);
-//	    	    }
-	      }
+//	    	   		attempts.setBackgroundColor(Color.RED);	
+//	    	   		attempts.setText(Integer.toString(counter));
+//	    	   		if(counter==0){
+//	    	   			login.setEnabled(false);
+//	      			}
+	      		}
+		}
 	}
+}
 	
-//}
+
