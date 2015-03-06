@@ -24,11 +24,8 @@ import android.widget.GridLayout.LayoutParams;
 import android.view.animation.*;
 import java.util.*;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.graphics.PointF;
-import android.view.Menu;
-import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -37,43 +34,160 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.ArrayList;
 
+import android.os.Handler;
+import android.view.animation.Animation.AnimationListener;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class DisplayMessageActivity extends ActionBarActivity {
 	
 	String[] diningList = {"Red Robin", "Salty's", "Subway", "Burger King", "Denny's", "Saigon Deli", "IHOP", "Applebee's",
 			"KFC", "Cracker Barrel", "Spaghetti Factory", "Olive Garden", "Luna Cafe", "Husky Deli", "QFC", "Safeway"};
 	//String[] sashaStuff = Collection.toArray(new String[sashaStuff.size]);
-	int numChoicesOnWheel = 4;
+	int numChoicesOnWheel = 16;
 	int listLength = diningList.length;
 	int xPivot = 335;
 	int yPivot = 450;
+	double padX = 0.0;
+	double padY = 0.0;
+	
+	
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * TO DO: MAKE MARSHALL EXPLAIN HIS INTENT NONSENSE AND HOW THE FIRST SCREEN CALLS THE SECOND
+	 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */
+	
+	
+	
+	    //returns a random long between min and max!
+		long randomWithRange(int min, int max)
+		{
+		   int range = (max - min) + 1;     
+		   return (long)(Math.random() * range) + min;
+		}
+		public final float endPoint = 450; // randomWithRange(360, 800);
+		public final int spinDuration = 4000; //randomWithRange(1000, 4000); //random duration between 1 & 4 seconds
+		public static final int repeatCount = 0; //(int)Double.POSITIVE_INFINITY;
+		//Log.d(constants.TAG, "Duration: "+ spinDuration+", Repeat Count: "+repeatCount);
 
+		
+		
+		
+		
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        RelativeLayout relativeLayout = new RelativeLayout(this);
         
-        //Displays in a string the options that should show up on the wheel
-        String messageAndOptions = getMessageFromIntent();
+        
+        RelativeLayout relativeLayout = new RelativeLayout(this);
         
         getDimensions();
         
         //Displays the individual words in a circle format
         displayIndividualDiningOptions(relativeLayout);
 
-        // Create the text view message
+        // Set the relativeLayout as the activity layout
+        //setContentView(relativeLayout);
+        setContentView(relativeLayout);
+        
+        //rotates the words
+        rotateWordsForWheel();
+        //rotateView();
+        
+        //Displays in a string the options that should show up on the wheel
+        String messageAndOptions = getMessageFromIntent();
+        
+        //Create the text view message
         TextView textView = new TextView(this);
         textView.setTextSize(25);
         textView.setText(messageAndOptions);
         textView.setPadding(0, 0, 0, 0); 
         relativeLayout.addView(textView);
-
-        // Set the relativeLayout as the activity layout
-        setContentView(relativeLayout);
         
-        //rotates the words
-        //rotateWordsForWheel();
-        //rotateView();
+        
+        
+        
+        //setContentView(R.layout.fragment_display_message);
+        ImageView imageView = (ImageView)findViewById(R.id.imageView1);
+        relativeLayout.addView(imageView);
+        /*
+        final float startPoint = 11.25f;  //initial angle of wheel view
+        final RotateAnimation anim = new RotateAnimation(startPoint, endPoint + startPoint, //2nd float sets target angle
+    	        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        final Button spinButton = (Button) findViewById(R.id.button1);
+        final Button stopButton = (Button) findViewById(R.id.button2);
+        final Button resetButton = (Button) findViewById(R.id.button3);
+        
+      //TextView that should display the current value of the wheel's duration
+        final TextView durationTracker = (TextView) this.findViewById(R.id.textView1);
+        durationTracker.setText(String.valueOf(spinDuration));
+ 
+        //Spins the image when the Spin button is pressed
+        spinButton.setOnClickListener(new View.OnClickListener() {
+        	@TargetApi(14)
+            public void onClick(View v) {
+            	findViewById(R.id.imageView1).setRotation(0);  //Sets initial angle (resets to start)
+            	   anim.setInterpolator(new LinearInterpolator());  //AccelerateInterpolator(-0.1f)
+            	   anim.setRepeatCount(repeatCount);
+            	   anim.setDuration(spinDuration); //sets duration of rotation
+            	  //anim.setFillAfter(true);
+                   final Handler handler = new Handler();
+                   handler.postDelayed(new Runnable() {
+                     @Override
+                     @TargetApi(14)
+                     public void run() {
+                    	 //anim.cancel();
+                   	     findViewById(R.id.imageView1).setRotation(90 + startPoint);
+                     }
+                   }, spinDuration);
+                   ((View) findViewById(R.id.imageView1)).startAnimation(anim); 
+            }
+        } );
+        
+      
+        
+        anim.setAnimationListener(new Animation.AnimationListener() {
+        @Override
+        @TargetApi(14)
+        public void onAnimationStart(Animation animation) {
+        	//findViewById(R.id.imageView1).setRotation(90 + startPoint);
+        }
+
+        @Override
+        @TargetApi(14)
+        public void onAnimationEnd(Animation animation) {
+        	findViewById(R.id.imageView1).setRotation(90 + startPoint);
+
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
+    }); 
+    //Cancels the spinning *FOR TESTING - NOT RELEASE VERSION*
+       
+        
+    stopButton.setOnClickListener(new View.OnClickListener() {
+    	@TargetApi(14)
+        public void onClick(View v) {
+        	anim.cancel();
+        	findViewById(R.id.imageView1).setRotation(90 + startPoint);
+        }});
+
+    //Resets wheel orientation *FOR TESTING - NOT RELEASE VERSION*
+    resetButton.setOnClickListener(new View.OnClickListener() {
+    	@TargetApi(14)
+        public void onClick(View v) {
+    		findViewById(R.id.imageView1).setRotation(startPoint);  //Sets initial angle (resets to start)
+        }
+    });
+        */
+        
+        
+        
+        
     }
 
     @Override
@@ -104,6 +218,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
         }
     }
     
+    //gets height and width dimensions of the device screen
     public void getDimensions(){
     	int widthScreen = this.getResources().getDisplayMetrics().widthPixels;
     	int heightScreen = this.getResources().getDisplayMetrics().heightPixels;
@@ -119,7 +234,8 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	Intent intent = getIntent();
         String message = intent.getStringExtra(FillWheel.EXTRA_MESSAGE);
         String x = ListOfOptions(diningList);
-        String messageOptions = "Height = " + heightScreen + " width = " + widthScreen + " " + message + " " + x;
+        int width = findViewById(R.id.dOptionOne).getMeasuredWidth();
+        String messageOptions = "Height = " + heightScreen + " width = " + widthScreen + " " + message + " " + x + " and th value for width is " + width;
     	return messageOptions;
     }
     
@@ -143,12 +259,25 @@ public class DisplayMessageActivity extends ActionBarActivity {
 	}
     
     @TargetApi(14)
+    //displays all the dining options in a circle format
     public void displayIndividualDiningOptions(RelativeLayout relativeLayout){
     	ArrayList<Integer> IdNames = new ArrayList<Integer>();
     	IdNames.add(R.id.dOptionOne);
     	IdNames.add(R.id.dOptionTwo);
     	IdNames.add(R.id.dOptionThree);
     	IdNames.add(R.id.dOptionFour);
+    	IdNames.add(R.id.dOptionFive);
+    	IdNames.add(R.id.dOptionSix);
+    	IdNames.add(R.id.dOptionSeven);
+    	IdNames.add(R.id.dOptionEight);
+    	IdNames.add(R.id.dOptionNine);
+    	IdNames.add(R.id.dOptionTen);
+    	IdNames.add(R.id.dOptionEleven);
+    	IdNames.add(R.id.dOptionTwelve);
+    	IdNames.add(R.id.dOptionThirteen);
+    	IdNames.add(R.id.dOptionFourteen);
+    	IdNames.add(R.id.dOptionFifteen);
+    	IdNames.add(R.id.dOptionSixteen);
     	int widthScreen = this.getResources().getDisplayMetrics().widthPixels;
     	int heightScreen = this.getResources().getDisplayMetrics().heightPixels;
     	int screenVariable = 0;
@@ -163,16 +292,14 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	}
         for (int i = 0; i < numChoicesOnWheel; i++){
         	//sets what is in the textView
-        	int fontSize = 16;
         	String diningOptionX = diningOption(diningList, i);
         	TextView Option = new TextView(this);
-        	Option.setTextSize(fontSize);
         	Option.setText(diningOptionX);
         	Option.setId(IdNames.get(i));
         	
-        	int numOptions = numChoicesOnWheel;
-        	double padX = setPaddingX(i, numOptions, screenVariable);
-        	double padY = setPaddingY(i, numOptions, screenVariable);
+        	int numOptions = numChoicesOnWheel;                       
+        	padX = setPaddingX(i, numOptions, screenVariable);                                               
+        	padY = setPaddingY(i, numOptions, screenVariable);
         	int xValue = (int) padX + xPivot;
         	int yValue = (int) padY + yPivot;
         	//dOption1.setPadding(xValue, yValue, 0, 0);
@@ -184,7 +311,10 @@ public class DisplayMessageActivity extends ActionBarActivity {
         	//gets text from text view
         	String restrauntName = Option.getText().toString();
         	int numCharacters = restrauntName.length();
-        	double width = (numCharacters * fontSize / 1.5) + 15 + ((screenVariable / 3.2) / Math.pow(numCharacters, 2));
+        	int fontSize = setFontSize(numCharacters);
+        	Option.setTextSize(fontSize);
+        	double width = 150.0;
+        	//double width = (numCharacters * fontSize / 1.5) + 15 + ((screenVariable / 3.2) / Math.pow(numCharacters, 2));
         	
         	//Creates location for textViews of dining locations and sets the size
         	RelativeLayout.LayoutParams params;
@@ -196,11 +326,13 @@ public class DisplayMessageActivity extends ActionBarActivity {
         }
     }
     
+    //turns the restaurant names into an array of strings
     public String diningOption(String[] diningList, int i){
     	String option = diningList[i];
     	return option;
     }
     
+    //sets the distance between the text view of a restaurant name and the center of the pivot point in the x direction
     public double setPaddingX(int i, int numOptions, int screenVariable) {
     	int x = i;
     	double coefficientValue = Math.PI * 2 / numOptions;
@@ -209,6 +341,22 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	return setPadding;
     }
     
+    //sets the fonts size of the restaurant name based on the number of characters in the name
+    public int setFontSize(int numCharacters) {
+    	int font = 16;
+    	if ((numCharacters > 12) && (numCharacters < 17)){
+    		font = 16 - (numCharacters - 12);
+    	}
+    	if ((numCharacters > 16) && (numCharacters < 25)){
+    		font = 12 - ((numCharacters - 16) / 2);
+    	}
+    	if (numCharacters > 24){
+    		font = 10;
+    	}
+    	return font;
+    }
+    
+    //sets the distance between the text view of a restaurant name and the center of the pivot point in the y direction
     public double setPaddingY(int i, int numOptions, int screenVariable) {
     	int x = i;
     	double coefficientValue = Math.PI * 2 / numOptions;
@@ -217,29 +365,115 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	return setPadding;
     }
     
+    //sets the angle of the text views relative to its location to the center of the circle
     public int setAngle(int i, int numOptions, int xValue, int screenVariable) {
     	int angle = 0;
-    	//(screenVariable / 3.2) come from double setPadding = xVariableCoordinate * (screenVariable / 3.2) in the setPaddingX method
-    	
-    	/*if (xValue < (screenVariable / 3.2)){
-    		angle = -90 - (360 / numOptions * i) - 6;
-    	} else {
-    		angle = 90 - (360 / numOptions * i);
-    	}*/
-    	
     	angle = 90 - (360 / numOptions * i);
     	return angle;
     }
     
+    //rotates individual text views all at once
     public void rotateWordsForWheel() {
     	//Rotate words around point (xPivot, yPivot)
-        RotateAnimation anim = new RotateAnimation (0f, 360f, 50, -215); // -(250 - ((width"150" / 2 ) - 40)) = -215
-        anim.setInterpolator(new LinearInterpolator());
-        anim.setRepeatCount(Animation.INFINITE);
-        anim.setDuration(2000);
-        ((View) findViewById(R.id.dOptionOne)).startAnimation(anim);
+    	int height = findViewById(R.id.dOptionOne).getMeasuredHeight();
+    	int width = findViewById(R.id.dOptionOne).getMeasuredWidth();
+    	//pulsates differently based on screen dimensions
+    	double inf = 0; //Double.POSITIVE_INFINITY;
+
+    	ArrayList<RotateAnimation> animations = new ArrayList<RotateAnimation>();
+    	for(int q = 0; q < numChoicesOnWheel; q++){
+    		double calculatedX = 0; //Placeholder value - awaiting Marshall's equation
+    		calculatedX = findXFloat (q, numChoicesOnWheel);
+    		double calculatedY = 0; //Placeholder value - awaiting Marshall's equation
+    		calculatedY = findYFloat (q, numChoicesOnWheel);
+    		RotateAnimation newAnimation = new RotateAnimation(0f, -1080f, Animation.RELATIVE_TO_SELF, (float)calculatedX, Animation.RELATIVE_TO_SELF, (float)calculatedY);
+    		newAnimation.setInterpolator(new AccelerateInterpolator(-0.1f));
+    		newAnimation.setRepeatCount((int)inf);
+    		newAnimation.setDuration(2000);
+    		animations.add(newAnimation);
+    	}
+    	
+    	int count = 0;
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionOne)).startAnimation(animations.get(0));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionTwo)).startAnimation(animations.get(1));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionThree)).startAnimation(animations.get(2));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionFour)).startAnimation(animations.get(3));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionFive)).startAnimation(animations.get(4));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionSix)).startAnimation(animations.get(5));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionSeven)).startAnimation(animations.get(6));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionEight)).startAnimation(animations.get(7));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionNine)).startAnimation(animations.get(8));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionTen)).startAnimation(animations.get(9));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionEleven)).startAnimation(animations.get(10));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionTwelve)).startAnimation(animations.get(11));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionThirteen)).startAnimation(animations.get(12));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionFourteen)).startAnimation(animations.get(13));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionFifteen)).startAnimation(animations.get(14));
+    		count++;
+    	}
+    	if (count < numChoicesOnWheel){
+    		((View) findViewById(R.id.dOptionSixteen)).startAnimation(animations.get(15));
+    		count++;
+    	}
     }
     
+    public double findXFloat(int i, int numOptions) {
+    	double x = (double)i / (double)numOptions;
+    	double variable = Math.sin((Math.PI / 2) * (x * ((double)numOptions / ((double)numOptions / 4)))) * -1.7;
+    	x = variable + 0.5;
+    	return x;
+    }
+    
+    public double findYFloat(int i, int numOptions) {
+    	double x = (double)i / (double)numOptions * 8.0;
+    	double variable = 8.2016 * Math.sin(0.79617 * x - 1.614);
+    	return variable;
+    }
+    
+    //rotates the entire linear layout that contains all of the text views
     public void rotateView(){
     	//Rotate words around point (xPivot, yPivot)
     	/*LinearLayout layout1 = (LinearLayout) findViewById(R.id.circleWords);
