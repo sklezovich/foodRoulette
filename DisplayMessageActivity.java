@@ -1,7 +1,7 @@
 package com.example.foodroulette;
 
 import android.support.v7.app.ActionBarActivity;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -42,7 +42,7 @@ import java.util.TimerTask;
 public class DisplayMessageActivity extends ActionBarActivity {
 	
 	String[] diningList = {"Red Robin", "Salty's", "Subway", "Burger King", "Denny's", "Saigon Deli", "IHOP", "Applebee's",
-			"KFC", "Cracker Barrel", "Spaghetti Factory", "Olive Garden", "Luna Cafe", "Husky Deli", "QFC", "Safeway"};
+			"KFC", "Cracker Barrel", "Spaghetti Factory", "Olive Garden", "Luna Cafe", "Husky Deli", "QFC", "Safeway", "Outback", "Purple Cafe"};
 	//String[] sashaStuff = Collection.toArray(new String[sashaStuff.size]);
 	int numChoicesOnWheel = 16;
 	int listLength = diningList.length;
@@ -50,12 +50,8 @@ public class DisplayMessageActivity extends ActionBarActivity {
 	int yPivot = 450;
 	double padX = 0.0;
 	double padY = 0.0;
+	//final ImageView imageview = new ImageView(this);
 	
-	
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	 * TO DO: MAKE MARSHALL EXPLAIN HIS INTENT NONSENSE AND HOW THE FIRST SCREEN CALLS THE SECOND
-	 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	 */
 	
 	
 	
@@ -68,6 +64,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
 		public final float endPoint = 450; // randomWithRange(360, 800);
 		public final int spinDuration = 4000; //randomWithRange(1000, 4000); //random duration between 1 & 4 seconds
 		public static final int repeatCount = 0; //(int)Double.POSITIVE_INFINITY;
+		public final float startPoint = 11.25f;  //initial angle of wheel view
 		//Log.d(constants.TAG, "Duration: "+ spinDuration+", Repeat Count: "+repeatCount);
 
 		
@@ -79,17 +76,27 @@ public class DisplayMessageActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         
         
-        
-        RelativeLayout relativeLayout = new RelativeLayout(this);
+        //setContentView(R.layout.fragment_display_message);
+        FrameLayout frameLayout = new FrameLayout(this);
+        //frameLayout frameLayout = new frameLayout(R.layout.fragment_display_message, this);
+        //int frameLayout = (R.layout.fragment_display_message);
+        //setContentView(R.layout.fragment_display_message);
         
         getDimensions();
         
+        ImageView imageview = new ImageView(this);
+        imageview.setImageResource(R.drawable.roulettewheelfixed); 
+        frameLayout.addView(imageview);
+        
         //Displays the individual words in a circle format
-        displayIndividualDiningOptions(relativeLayout);
+        displayIndividualDiningOptions(frameLayout);
+        
+        ImageView imageArrow = new ImageView(this);
+        imageArrow.setImageResource(R.drawable.arrow);
+        frameLayout.addView(imageArrow);
 
-        // Set the relativeLayout as the activity layout
-        //setContentView(relativeLayout);
-        setContentView(relativeLayout);
+        // Set the frameLayout as the activity layout
+        setContentView(frameLayout);
         
         //rotates the words
         rotateWordsForWheel();
@@ -99,18 +106,42 @@ public class DisplayMessageActivity extends ActionBarActivity {
         String messageAndOptions = getMessageFromIntent();
         
         //Create the text view message
-        TextView textView = new TextView(this);
-        textView.setTextSize(25);
-        textView.setText(messageAndOptions);
-        textView.setPadding(0, 0, 0, 0); 
-        relativeLayout.addView(textView);
+        //TextView textView = new TextView(this);
+        //textView.setTextSize(25);
+        //textView.setText(messageAndOptions);
+        //textView.setPadding(0, 0, 0, 0); 
+        //frameLayout.addView(textView);
         
-        
-        
-        
-        //setContentView(R.layout.fragment_display_message);
-        ImageView imageView = (ImageView)findViewById(R.id.imageView1);
-        relativeLayout.addView(imageView);
+        final RotateAnimation anim = new RotateAnimation(startPoint, endPoint + startPoint, //2nd float sets target angle
+    	        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+ 	   anim.setInterpolator(new AccelerateInterpolator(0.1f));
+ 	   anim.setRepeatCount(repeatCount);
+ 	   anim.setDuration(spinDuration); //sets duration of rotation
+ 	   imageview.setRotation(42 + startPoint);
+ 	   imageview.startAnimation(anim); 
+ 	   
+
+ 	   /*
+ 	  anim.setAnimationListener(new Animation.AnimationListener() {
+ 	        @Override
+ 	        @TargetApi(14)
+ 	        public void onAnimationStart(Animation animation) {
+ 	        	//imageview.setRotation(90 + startPoint);
+ 	        }
+
+ 	        @Override
+ 	        @TargetApi(14)
+ 	        public void onAnimationEnd(Animation animation) {
+ 	        	findViewById(R.id.imageView1).setRotation(90 + startPoint);
+
+ 	        }
+
+ 	        @Override
+ 	        public void onAnimationRepeat(Animation animation) {
+
+ 	        }
+ 	    }); 
+ 	   */
         /*
         final float startPoint = 11.25f;  //initial angle of wheel view
         final RotateAnimation anim = new RotateAnimation(startPoint, endPoint + startPoint, //2nd float sets target angle
@@ -138,26 +169,27 @@ public class DisplayMessageActivity extends ActionBarActivity {
                      @TargetApi(14)
                      public void run() {
                     	 //anim.cancel();
-                   	     findViewById(R.id.imageView1).setRotation(90 + startPoint);
+                    	 findViewById(R.id.imageView1).setRotation(90 + startPoint);
                      }
                    }, spinDuration);
-                   ((View) findViewById(R.id.imageView1)).startAnimation(anim); 
+                   findViewById(R.id.imageView1).startAnimation(anim); 
             }
         } );
         
+      */
       
-        
+        /*
         anim.setAnimationListener(new Animation.AnimationListener() {
         @Override
         @TargetApi(14)
         public void onAnimationStart(Animation animation) {
-        	//findViewById(R.id.imageView1).setRotation(90 + startPoint);
+        	//imageview.setRotation(90 + startPoint);
         }
 
         @Override
         @TargetApi(14)
         public void onAnimationEnd(Animation animation) {
-        	findViewById(R.id.imageView1).setRotation(90 + startPoint);
+        	imageview.setRotation(90 + startPoint);
 
         }
 
@@ -168,22 +200,22 @@ public class DisplayMessageActivity extends ActionBarActivity {
     }); 
     //Cancels the spinning *FOR TESTING - NOT RELEASE VERSION*
        
-        
+       
     stopButton.setOnClickListener(new View.OnClickListener() {
     	@TargetApi(14)
         public void onClick(View v) {
         	anim.cancel();
-        	findViewById(R.id.imageView1).setRotation(90 + startPoint);
+        	imageview.setRotation(90 + startPoint);
         }});
 
     //Resets wheel orientation *FOR TESTING - NOT RELEASE VERSION*
     resetButton.setOnClickListener(new View.OnClickListener() {
     	@TargetApi(14)
         public void onClick(View v) {
-    		findViewById(R.id.imageView1).setRotation(startPoint);  //Sets initial angle (resets to start)
+    		imageview.setRotation(startPoint);  //Sets initial angle (resets to start)
         }
     });
-        */
+    */  
         
         
         
@@ -222,8 +254,8 @@ public class DisplayMessageActivity extends ActionBarActivity {
     public void getDimensions(){
     	int widthScreen = this.getResources().getDisplayMetrics().widthPixels;
     	int heightScreen = this.getResources().getDisplayMetrics().heightPixels;
-    	xPivot = (int)(widthScreen / 2.4);
-    	yPivot = (int)(heightScreen / 2.7);
+    	xPivot = (int)(widthScreen / 2.5);
+    	yPivot = (int)(heightScreen / 2.3);
     }
     
     //Gets message from FillWheel.java
@@ -244,6 +276,9 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	if (listLength < numChoicesOnWheel){
     		numChoicesOnWheel = listLength;
     	}
+    	if (listLength > 16){
+    		listLength = 16;
+    	}
 		String printListString = "Your options are ";
 		for (int i = 0; i < numChoicesOnWheel; i++){
 			if (i == 0){
@@ -260,7 +295,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
     
     @TargetApi(14)
     //displays all the dining options in a circle format
-    public void displayIndividualDiningOptions(RelativeLayout relativeLayout){
+    public void displayIndividualDiningOptions(FrameLayout frameLayout){
     	ArrayList<Integer> IdNames = new ArrayList<Integer>();
     	IdNames.add(R.id.dOptionOne);
     	IdNames.add(R.id.dOptionTwo);
@@ -317,12 +352,12 @@ public class DisplayMessageActivity extends ActionBarActivity {
         	//double width = (numCharacters * fontSize / 1.5) + 15 + ((screenVariable / 3.2) / Math.pow(numCharacters, 2));
         	
         	//Creates location for textViews of dining locations and sets the size
-        	RelativeLayout.LayoutParams params;
-        	params = new RelativeLayout.LayoutParams((int)width, 30);
+        	FrameLayout.LayoutParams params;
+        	params = new FrameLayout.LayoutParams((int)width, 30);
         	params.leftMargin = xValue;
         	params.topMargin = yValue;
         	
-        	relativeLayout.addView(Option, params);
+        	frameLayout.addView(Option, params);
         }
     }
     
@@ -375,10 +410,10 @@ public class DisplayMessageActivity extends ActionBarActivity {
     //rotates individual text views all at once
     public void rotateWordsForWheel() {
     	//Rotate words around point (xPivot, yPivot)
-    	int height = findViewById(R.id.dOptionOne).getMeasuredHeight();
-    	int width = findViewById(R.id.dOptionOne).getMeasuredWidth();
+    	//int height = findViewById(R.id.dOptionOne).getMeasuredHeight();
+    	//int width = findViewById(R.id.dOptionOne).getMeasuredWidth();
     	//pulsates differently based on screen dimensions
-    	double inf = 0; //Double.POSITIVE_INFINITY;
+    	//double inf = 0; //Double.POSITIVE_INFINITY;
 
     	ArrayList<RotateAnimation> animations = new ArrayList<RotateAnimation>();
     	for(int q = 0; q < numChoicesOnWheel; q++){
@@ -386,10 +421,13 @@ public class DisplayMessageActivity extends ActionBarActivity {
     		calculatedX = findXFloat (q, numChoicesOnWheel);
     		double calculatedY = 0; //Placeholder value - awaiting Marshall's equation
     		calculatedY = findYFloat (q, numChoicesOnWheel);
-    		RotateAnimation newAnimation = new RotateAnimation(0f, -1080f, Animation.RELATIVE_TO_SELF, (float)calculatedX, Animation.RELATIVE_TO_SELF, (float)calculatedY);
-    		newAnimation.setInterpolator(new AccelerateInterpolator(-0.1f));
-    		newAnimation.setRepeatCount((int)inf);
-    		newAnimation.setDuration(2000);
+    		//RotateAnimation newAnimation = new RotateAnimation(0f, endPoint + startPoint, Animation.RELATIVE_TO_PARENT, 0.25f, 
+    				//Animation.RELATIVE_TO_PARENT, 0.5f);
+    		RotateAnimation newAnimation = new RotateAnimation(0f, endPoint + startPoint, Animation.RELATIVE_TO_SELF, (float)calculatedX, 
+    				Animation.RELATIVE_TO_SELF, (float)calculatedY);
+    		newAnimation.setInterpolator(new AccelerateInterpolator(0.1f));
+    		newAnimation.setRepeatCount(repeatCount);
+    		newAnimation.setDuration(spinDuration);
     		animations.add(newAnimation);
     	}
     	
@@ -463,7 +501,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
     public double findXFloat(int i, int numOptions) {
     	double x = (double)i / (double)numOptions;
     	double variable = Math.sin((Math.PI / 2) * (x * ((double)numOptions / ((double)numOptions / 4)))) * -1.7;
-    	x = variable + 0.5;
+    	x = variable + 0.50;
     	return x;
     }
     
@@ -481,9 +519,9 @@ public class DisplayMessageActivity extends ActionBarActivity {
         layout1.setAnimation(anim);
         layout1.startAnimation(anim);*/
         
-    	LinearLayout layout1 = (LinearLayout) findViewById(R.id.circleWords);
-    	Animation rotateAnim = AnimationUtils.loadAnimation(this, R.anim.rotatewords);
-        LayoutAnimationController animController = new LayoutAnimationController(rotateAnim, 0);
-        layout1.setLayoutAnimation(animController);
+    	//LinearLayout layout1 = (LinearLayout) findViewById(R.id.circleWords);
+    	//Animation rotateAnim = AnimationUtils.loadAnimation(this, R.anim.rotatewords);
+        //LayoutAnimationController animController = new LayoutAnimationController(rotateAnim, 0);
+        //layout1.setLayoutAnimation(animController);
     }
 }
