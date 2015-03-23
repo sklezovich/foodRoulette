@@ -124,12 +124,58 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Preferences"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_below="@+id/textView3"
+        android:text="Ratings"
+        android:textSize="20sp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar_ratings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:numStars="5"
+        android:stepSize="0.5" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/seekBar_distance"
+        android:layout_below="@+id/ratingBar_ratings"
+        android:layout_marginTop="21dp"
+        android:text="Distance"
+        android:textSize="20sp" />
+
+    <SeekBar
+        android:id="@+id/seekBar_distance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_below="@+id/textView2"
+        android:max="20"
+        android:minHeight="20dp" />
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_SPIN"
-        android:layout_alignLeft="@+id/distanceText"
+        android:layout_alignRight="@+id/seekBar_distance"
         android:orientation="vertical" >
 
         <CheckBox
@@ -144,8 +190,8 @@
             android:id="@+id/checkBox_Korean"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
             android:text="Korean"
-                        android:onClick="onCheckboxClicked"
             android:textSize="25sp" />
 
         <CheckBox
@@ -176,8 +222,8 @@
             android:id="@+id/checkBox_Pubs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
             android:text="Pubs"
-                        android:onClick="onCheckboxClicked"
             android:textSize="25sp" />
 
         <CheckBox
@@ -194,7 +240,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="Seafood"
-            android:textSize="25sp"/>
+            android:textSize="25sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Southern"
@@ -208,9 +254,9 @@
             android:id="@+id/checkBox_SouthAmerican"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
             android:text="South American"
-                        android:onClick="onCheckboxClicked"
-            android:textSize="25sp"  />
+            android:textSize="25sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Vietnamese"
@@ -227,98 +273,6 @@
             android:onClick="onCheckboxClicked"
             android:text="Thai"
             android:textSize="25sp" />
-
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Preferences"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/distanceText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="31dp"
-        android:text="0/20" />
-
-    <SeekBar
-        android:id="@+id/seekBar_distance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/distanceText"
-        android:layout_alignLeft="@+id/linearLayout1"
-        android:layout_marginBottom="14dp"
-        android:max="20" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/seekBar_distance"
-        android:layout_alignLeft="@+id/seekBar_distance"
-        android:layout_marginBottom="17dp"
-        android:text="Distance" />
-
-    <RatingBar
-        android:id="@+id/ratingBar_ratings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="12dp"
-        android:numStars="5"
-        android:stepSize="0.5" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/ratingBar_ratings"
-        android:layout_alignLeft="@+id/ratingBar_ratings"
-        android:text="Ratings" />
-
-    <TextView
-        android:id="@+id/BudgetText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="17dp"
-        android:text="Budget" />
-
-    <Spinner
-        android:id="@+id/spinner_budget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView1"
-        android:layout_alignParentLeft="true"
-        android:entries="@array/budget_array" />
-    
-     <TextView
-         android:id="@+id/BudgetValue"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_above="@+id/spinner_budget"
-         android:layout_alignRight="@+id/button_SPIN"
-         android:layout_marginLeft="11dp"
-         android:text="0/5" />
-
-    <TextView
-        android:id="@+id/RatingsValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ratingBar_ratings"
-        android:layout_marginBottom="19dp"
-        android:layout_toRightOf="@+id/button_SPIN"
-        android:text="0/5" />
-    
-   
 
 </RelativeLayout>

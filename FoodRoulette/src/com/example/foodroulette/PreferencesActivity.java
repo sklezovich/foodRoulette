@@ -28,11 +28,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.SeekBar;
@@ -41,17 +43,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import com.beust.jcommander.JCommander;
 
-public class PreferencesActivity extends ActionBarActivity implements OnItemSelectedListener, OnRatingBarChangeListener, OnSeekBarChangeListener, OnClickListener{
+public class PreferencesActivity extends ActionBarActivity implements OnRatingBarChangeListener, OnSeekBarChangeListener, OnClickListener{
 	
-   static ArrayList<String> cuisine = new ArrayList<String>();
-   int budget;
+   static ArrayList<String> cuisine;
+   
+   Intent basdf;
    double ratings;
    double numstars;
    double distance;
    private SeekBar distances;
-   private TextView distanceValue;
-   private TextView ratingsValue;
-   private TextView budgetValue;
    String[] args;
    Button spin;
    private static String cuisiney;
@@ -71,30 +71,26 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
 	private static final String TOKEN_SECRET = "BTcOJmACrxAg6jBJ_trM3nXCfvs";
 	OAuthService service;
 	Token accessToken;
+	
+	public PreferencesActivity() {
+ 	}
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preferences);
         
-     Spinner spinner = (Spinner) findViewById(R.id.spinner_budget);
-     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-             R.array.budget_array, android.R.layout.simple_spinner_item);
-     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);   
-     spinner.setAdapter(adapter);
-     spinner.setOnItemSelectedListener(this);
-     budgetValue = (TextView) findViewById(R.id.BudgetValue);
+	    cuisine = new ArrayList<String>();
+	    basdf = new Intent (this, PrintPLease.class);
+        
+        setContentView(R.layout.activity_preferences);
      
      spin = (Button) findViewById(R.id.button_SPIN);
      spin.setOnClickListener(this);
 
     RatingBar ratings = (RatingBar) findViewById(R.id.ratingBar_ratings);
     ratings.setOnRatingBarChangeListener(this);
-    ratingsValue = (TextView) findViewById(R.id.RatingsValue);
     
     distances = (SeekBar) findViewById(R.id.seekBar_distance);
-    distanceValue = (TextView) findViewById(R.id.distanceText);
-    distanceValue.setText(distances.getProgress() + "/" + distances.getMax());
     
     distances.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
     	@Override
@@ -111,7 +107,6 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
 
     	@Override
 		public void onStopTrackingTouch(SeekBar arg0) {
-    		distanceValue.setText(distances.getProgress()+ "/" + distances.getMax());
 		
     	}
     });
@@ -132,7 +127,7 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
                 YelpAPI.setLocation("Seattle", "WA");
 				for (String pref : preferences){
 					try {
-						YelpAPI.setLimit(10);
+						YelpAPI.setLimit(20);
 						Log.v("blah","ten");
 					} catch (Exception e) {
 						Log.v(pref, "Lookie here "+e.toString());
@@ -170,10 +165,36 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
         protected void onPostExecute(String result) {
         	int i = 1;
         	Collection<Foodies> whatever = FoodfActivity.Random(args,done,numstars);
-        	for (Foodies f: whatever){
-        		Log.v("PA",i+". "+f.toString());
+        	
+        	//whatever is what we want!!!!
+        	//can either pass as a parameter right here or make an over-arching variable
+        	//if pass, call intent here? 
+        	
+        	//comment bottom portion during integration 
+        	String[] stringArr = new String[whatever.size()];
+        	Collection<Foodies> sfg = whatever;
+        	
+        	int j = 0;
+        		for (Foodies f: whatever){
+        			stringArr[j] = f.toString();
+        			j++;
+        		}
+
+        	
+        	Bundle bundle = new Bundle(); 
+        	bundle.putStringArray("key", stringArr);
+        	basdf.putExtras(bundle);
+        	startActivity(basdf);
+        	//for (Foodies f: whatever){
+        		//Log.v("PA",i+". "+f.toString());
+    
+        		//ugh.setText("a");//not doing anything?
+        		//TextView myT = new TextView(null);
+        		//yT.setText(f.toString());
+        		
+        		//ugh.setText(f.toString());
+        		//ugh.addView(myT);
         		i++;
-        	}
         }
         
        @Override
@@ -214,23 +235,10 @@ public class PreferencesActivity extends ActionBarActivity implements OnItemSele
     public static ArrayList<String> getCuisines() {
     	return cuisine;
     }
-    
-	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        switch (parent.getId()) {
-        	case R.id.spinner_budget:
-        	budget = pos + 1;
-        	budgetValue.setText(budget + "/ 5");
-            break;
-        }
-	}  
-
-	public void onNothingSelected(AdapterView<?> parent) {
-	}
 	
 	public void onRatingChanged(RatingBar ratingBar, float rating,
 		boolean fromTouch) {
 		numstars = rating;
-		ratingsValue.setText(numstars + " / 5");
 	}
 
 	@Override
