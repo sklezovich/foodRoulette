@@ -80,7 +80,7 @@ public class PreferencesActivity extends ActionBarActivity implements OnRatingBa
         super.onCreate(savedInstanceState);
         
 	    cuisine = new ArrayList<String>();
-	    basdf = new Intent (this, PrintPLease.class);
+	    basdf = new Intent (this, DisplayMessageActivity.class);
         
         setContentView(R.layout.activity_preferences);
      
@@ -176,15 +176,14 @@ public class PreferencesActivity extends ActionBarActivity implements OnRatingBa
         	
         	int j = 0;
         		for (Foodies f: whatever){
-        			stringArr[j] = f.toString();
+        		stringArr[j] = f.toString();
         			j++;
-        		}
-
-        	
+        		}        	
         	Bundle bundle = new Bundle(); 
         	bundle.putStringArray("key", stringArr);
         	basdf.putExtras(bundle);
         	startActivity(basdf);
+        	//startActivity((basdf, DisplayMessageActivity.class)); //sketchy
         	//for (Foodies f: whatever){
         		//Log.v("PA",i+". "+f.toString());
     
@@ -263,9 +262,9 @@ public class PreferencesActivity extends ActionBarActivity implements OnRatingBa
 				preferences = ip;
 				preferencesThread preT = new preferencesThread(this);
 				preT.execute("");
-				
+				//startActivity(basdf);
+				//startActivity(new Intent (this, DisplayMessageActivity.class));	
 			break;
-	
 		}
 	}
 }

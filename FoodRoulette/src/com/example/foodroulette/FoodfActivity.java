@@ -31,6 +31,7 @@ public class FoodfActivity {
 	private static double distances;
 	
 	private static Collection<Foodies> done = new ArrayList<Foodies>();
+	private static Collection<Foodies> blahh = new ArrayList<Foodies>();
 	
 	private static final String CONSUMER_KEY = "2-9FkxPyl4-R-8ouw9Ilww";
 	private static final String CONSUMER_SECRET = "894AUSkNSOvx_Smt7VBssFieSNQ";
@@ -90,9 +91,16 @@ public class FoodfActivity {
 			} else {
 				return d;
 			}
+			
+			blahh = blah;
 			return blah;//make random list altering  
 		}
 
+		public static Collection<Foodies> getBlahh(){
+			return blahh;
+		}
+		
+		
 		//allows access to the list
 		public static Collection<Foodies> getListy(String[] args){
 			return done;

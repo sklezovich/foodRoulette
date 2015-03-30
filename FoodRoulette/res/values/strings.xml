@@ -18,5 +18,6 @@
     <string name="title_activity_foodf">Foodf</string>
     <string name="title_activity_export_database_csvtask">ExportDatabaseCSVTask</string>
     <string name="title_activity_print_please">PrintPLease</string>
+    <string name="title_activity_wheel_spin">WheelSpin</string>
 
 </resources>

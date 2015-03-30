@@ -19,6 +19,7 @@ import java.lang.Math;
 import android.graphics.Matrix;
 import android.graphics.Canvas;
 import android.graphics.Bitmap;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.widget.GridLayout.LayoutParams;
 import android.view.animation.*;
@@ -39,8 +40,10 @@ import android.view.animation.Animation.AnimationListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
+@SuppressLint("NewApi")
 public class DisplayMessageActivity extends ActionBarActivity {
-	
+
 	String[] diningList = {"Red Robin", "Salty's", "Subway", "Burger King", "Denny's", "Saigon Deli", "IHOP", "Applebee's",
 			"KFC", "Cracker Barrel", "Spaghetti Factory", "Olive Garden", "Luna Cafe", "Husky Deli", "QFC", "Safeway", "Outback", "Purple Cafe"};
 	//String[] sashaStuff = Collection.toArray(new String[sashaStuff.size]);
@@ -50,6 +53,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
 	int yPivot = 450;
 	double padX = 0.0;
 	double padY = 0.0;
+	String[] message = null;
 	//final ImageView imageview = new ImageView(this);
 	
 	
@@ -75,6 +79,11 @@ public class DisplayMessageActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+		Bundle bundle = (Bundle) getIntent().getExtras();		
+		message = bundle.getStringArray("key"); //message = collection array
+		
+		String result = Arrays.toString(message);
+
         
         //setContentView(R.layout.fragment_display_message);
         FrameLayout frameLayout = new FrameLayout(this);
@@ -103,7 +112,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
         //rotateView();
         
         //Displays in a string the options that should show up on the wheel
-        String messageAndOptions = getMessageFromIntent();
+        //String messageAndOptions = getMessageFromIntent();
         
         //Create the text view message
         //TextView textView = new TextView(this);
@@ -244,8 +253,8 @@ public class DisplayMessageActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                   Bundle savedInstanceState) {
-              View rootView = inflater.inflate(R.layout.fragment_display_message,
-                      container, false);
+            View rootView = inflater.inflate(R.layout.fragment_display_message,
+                    container, false);
               return rootView;
         }
     }
@@ -259,7 +268,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
     }
     
     //Gets message from FillWheel.java
-    public String getMessageFromIntent(){
+    /*public String getMessageFromIntent(){
     	int widthScreen = this.getResources().getDisplayMetrics().widthPixels;
     	int heightScreen = this.getResources().getDisplayMetrics().heightPixels;
     	
@@ -269,7 +278,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
         int width = findViewById(R.id.dOptionOne).getMeasuredWidth();
         String messageOptions = "Height = " + heightScreen + " width = " + widthScreen + " " + message + " " + x + " and th value for width is " + width;
     	return messageOptions;
-    }
+    }*/
     
     //Displays in a string the options that should show up on the wheel
     public String ListOfOptions(String[] diningList){
@@ -325,47 +334,59 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	if (listLength < numChoicesOnWheel){
     		numChoicesOnWheel = listLength;
     	}
-        for (int i = 0; i < numChoicesOnWheel; i++){
-        	//sets what is in the textView
-        	String diningOptionX = diningOption(diningList, i);
-        	TextView Option = new TextView(this);
-        	Option.setText(diningOptionX);
-        	Option.setId(IdNames.get(i));
-        	
-        	int numOptions = numChoicesOnWheel;                       
-        	padX = setPaddingX(i, numOptions, screenVariable);                                               
-        	padY = setPaddingY(i, numOptions, screenVariable);
-        	int xValue = (int) padX + xPivot;
-        	int yValue = (int) padY + yPivot;
-        	//dOption1.setPadding(xValue, yValue, 0, 0);
-        	
-        	//sets the angle of text
-        	double angleOfText = setAngle(i, numOptions, xValue, screenVariable);
-        	Option.setRotation((float)angleOfText);
-        	
-        	//gets text from text view
-        	String restrauntName = Option.getText().toString();
-        	int numCharacters = restrauntName.length();
-        	int fontSize = setFontSize(numCharacters);
-        	Option.setTextSize(fontSize);
-        	double width = 150.0;
-        	//double width = (numCharacters * fontSize / 1.5) + 15 + ((screenVariable / 3.2) / Math.pow(numCharacters, 2));
-        	
-        	//Creates location for textViews of dining locations and sets the size
-        	FrameLayout.LayoutParams params;
-        	params = new FrameLayout.LayoutParams((int)width, 30);
-        	params.leftMargin = xValue;
-        	params.topMargin = yValue;
-        	
-        	frameLayout.addView(Option, params);
-        }
+    	
+    	Collection<Foodies> foods = FoodfActivity.getBlahh();
+    	int i = 0;
+    	for (Foodies f : foods){
+    		if (i < numChoicesOnWheel){
+    			//sets what is in the textView
+    			
+    			
+            	//String diningOptionX = diningOption(f.name(), i);
+            	TextView Option = new TextView(this);
+            	Option.setText(f.name());
+            	Option.setId(IdNames.get(i));
+            	
+            	//sets location
+            	int numOptions = numChoicesOnWheel;                       
+            	padX = setPaddingX(i, numOptions, screenVariable);                                               
+            	padY = setPaddingY(i, numOptions, screenVariable);
+            	int xValue = (int) padX + xPivot;
+            	int yValue = (int) padY + yPivot;
+            	//dOption1.setPadding(xValue, yValue, 0, 0);
+            	
+            	//sets the angle of text
+            	double angleOfText = setAngle(i, numOptions, xValue, screenVariable);
+            	Option.setRotation((float)angleOfText);
+            	
+            	//gets text from text view
+            	//String restrauntName = Option.getText().toString();
+            	String restrauntName = f.name();
+            	int numCharacters = restrauntName.length();
+            	int fontSize = setFontSize(numCharacters);
+            	Option.setTextSize(fontSize);
+            	double width = 150.0;
+            	//double width = (numCharacters * fontSize / 1.5) + 15 + ((screenVariable / 3.2) / Math.pow(numCharacters, 2));
+            	
+            	//Creates location for textViews of dining locations and sets the size
+            	FrameLayout.LayoutParams params;
+            	params = new FrameLayout.LayoutParams((int)width, 30);
+            	params.leftMargin = xValue;
+            	params.topMargin = yValue;
+            	
+            	frameLayout.addView(Option, params);
+        		i++;
+        	}
+    	}
+    	
+        
     }
     
     //turns the restaurant names into an array of strings
-    public String diningOption(String[] diningList, int i){
-    	String option = diningList[i];
-    	return option;
-    }
+    //public String diningOption(String string, int i){
+    	//String option = string[i];
+    //	return option;
+    //}
     
     //sets the distance between the text view of a restaurant name and the center of the pivot point in the x direction
     public double setPaddingX(int i, int numOptions, int screenVariable) {
