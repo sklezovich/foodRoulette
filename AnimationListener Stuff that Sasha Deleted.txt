@@ -1,0 +1,19 @@
+ /*anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            @TargetApi(14)
+            public void onAnimationStart(Animation animation) {
+            	//findViewById(R.id.imageView1).setRotation(90 + startPoint);
+            }
+
+            @Override
+            @TargetApi(14)
+            public void onAnimationEnd(Animation animation) {
+            	findViewById(R.id.imageView1).setRotation(90 + startPoint);
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        }); */
