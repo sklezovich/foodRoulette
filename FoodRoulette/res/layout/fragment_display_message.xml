@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/button_SPIN"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -9,11 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.foodroulette.DisplayMessageActivity$PlaceholderFragment" >
     
-            
-    
-
-
-                   
     	<TextView  
         	android:id="@+id/dOptionOne"
     		android:layout_width="wrap_content" 
@@ -158,42 +154,6 @@
     		android:gravity="center" 
     		android:textStyle="bold"/>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Spin!" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="Stop" />
-    
-            <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:rotation="11.25"
-        android:contentDescription="@string/hello_world"
-        android:src="@drawable/roulettewheelfixed"/>
-    
-
-    <Button
-        android:id="@+id/button3"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="Reset" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -211,5 +171,21 @@
          android:layout_gravity="center_vertical|right"
          android:contentDescription="@string/hello_world"
          android:src="@drawable/arrow" />
+
+     <ImageView
+         android:id="@+id/imageView1"
+         android:layout_width="fill_parent"
+         android:layout_height="430dp"
+         android:contentDescription="@string/hello_world"
+         android:rotation="11.25"
+         android:src="@drawable/roulettewheelfixed" />
+
+     <Button
+         android:id="@+id/button1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_horizontal|bottom"
+         android:text="Spin!"
+         android:visibility="visible" />
  
 </FrameLayout>

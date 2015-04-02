@@ -34,11 +34,14 @@ import android.widget.FrameLayout;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.os.Handler;
 import android.view.animation.Animation.AnimationListener;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import com.example.foodroulette.PreferencesActivity.preferencesThread;
 
 
 @SuppressLint("NewApi")
@@ -54,6 +57,10 @@ public class DisplayMessageActivity extends ActionBarActivity {
 	double padX = 0.0;
 	double padY = 0.0;
 	String[] message = null;
+	
+	FrameLayout frameLayout = null;
+	ImageView imageview = null;
+	
 	//final ImageView imageview = new ImageView(this);
 	
 	
@@ -78,6 +85,8 @@ public class DisplayMessageActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        final Button spinButton = (Button) findViewById(R.id.button1);
         
 		Bundle bundle = (Bundle) getIntent().getExtras();		
 		message = bundle.getStringArray("key"); //message = collection array
@@ -325,17 +334,19 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	int widthScreen = this.getResources().getDisplayMetrics().widthPixels;
     	int heightScreen = this.getResources().getDisplayMetrics().heightPixels;
     	int screenVariable = 0;
+    	Collection<Foodies> foods = FoodfActivity.getBlahh();
+    	Collections.shuffle((List<?>) foods);
     	if (widthScreen > heightScreen){
     		screenVariable = heightScreen;
     	}else{
     		screenVariable = widthScreen;
     	}
     	
-    	if (listLength < numChoicesOnWheel){
-    		numChoicesOnWheel = listLength;
+    	if (foods.size() < numChoicesOnWheel){
+    		numChoicesOnWheel = foods.size();
     	}
+ 
     	
-    	Collection<Foodies> foods = FoodfActivity.getBlahh();
     	int i = 0;
     	for (Foodies f : foods){
     		if (i < numChoicesOnWheel){
@@ -381,6 +392,26 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	
         
     }
+    
+    public void onClick(View v) {
+    	switch(v.getId()) {
+			case R.id.button1:
+				setContentView(frameLayout);
+		        
+		        rotateWordsForWheel();
+		        
+		        final RotateAnimation anim = new RotateAnimation(startPoint, endPoint + startPoint, //2nd float sets target angle
+		    	        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+		 	   anim.setInterpolator(new AccelerateInterpolator(0.1f));
+		 	   anim.setRepeatCount(repeatCount);
+		 	   anim.setDuration(spinDuration); //sets duration of rotation
+		 	   imageview.setRotation(42 + startPoint);
+		 	   imageview.startAnimation(anim); 
+				
+			break;
+    	}
+    }
+    
     
     //turns the restaurant names into an array of strings
     //public String diningOption(String string, int i){
