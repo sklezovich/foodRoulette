@@ -93,12 +93,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
 		
 		String result = Arrays.toString(message);
 
-        
-        //setContentView(R.layout.fragment_display_message);
         FrameLayout frameLayout = new FrameLayout(this);
-        //frameLayout frameLayout = new frameLayout(R.layout.fragment_display_message, this);
-        //int frameLayout = (R.layout.fragment_display_message);
-        //setContentView(R.layout.fragment_display_message);
         
         getDimensions();
         
@@ -118,17 +113,6 @@ public class DisplayMessageActivity extends ActionBarActivity {
         
         //rotates the words
         rotateWordsForWheel();
-        //rotateView();
-        
-        //Displays in a string the options that should show up on the wheel
-        //String messageAndOptions = getMessageFromIntent();
-        
-        //Create the text view message
-        //TextView textView = new TextView(this);
-        //textView.setTextSize(25);
-        //textView.setText(messageAndOptions);
-        //textView.setPadding(0, 0, 0, 0); 
-        //frameLayout.addView(textView);
         
         final RotateAnimation anim = new RotateAnimation(startPoint, endPoint + startPoint, //2nd float sets target angle
     	        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
@@ -137,106 +121,6 @@ public class DisplayMessageActivity extends ActionBarActivity {
  	   anim.setDuration(spinDuration); //sets duration of rotation
  	   imageview.setRotation(42 + startPoint);
  	   imageview.startAnimation(anim); 
- 	   
-
- 	   /*
- 	  anim.setAnimationListener(new Animation.AnimationListener() {
- 	        @Override
- 	        @TargetApi(14)
- 	        public void onAnimationStart(Animation animation) {
- 	        	//imageview.setRotation(90 + startPoint);
- 	        }
-
- 	        @Override
- 	        @TargetApi(14)
- 	        public void onAnimationEnd(Animation animation) {
- 	        	findViewById(R.id.imageView1).setRotation(90 + startPoint);
-
- 	        }
-
- 	        @Override
- 	        public void onAnimationRepeat(Animation animation) {
-
- 	        }
- 	    }); 
- 	   */
-        /*
-        final float startPoint = 11.25f;  //initial angle of wheel view
-        final RotateAnimation anim = new RotateAnimation(startPoint, endPoint + startPoint, //2nd float sets target angle
-    	        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        final Button spinButton = (Button) findViewById(R.id.button1);
-        final Button stopButton = (Button) findViewById(R.id.button2);
-        final Button resetButton = (Button) findViewById(R.id.button3);
-        
-      //TextView that should display the current value of the wheel's duration
-        final TextView durationTracker = (TextView) this.findViewById(R.id.textView1);
-        durationTracker.setText(String.valueOf(spinDuration));
- 
-        //Spins the image when the Spin button is pressed
-        spinButton.setOnClickListener(new View.OnClickListener() {
-        	@TargetApi(14)
-            public void onClick(View v) {
-            	findViewById(R.id.imageView1).setRotation(0);  //Sets initial angle (resets to start)
-            	   anim.setInterpolator(new LinearInterpolator());  //AccelerateInterpolator(-0.1f)
-            	   anim.setRepeatCount(repeatCount);
-            	   anim.setDuration(spinDuration); //sets duration of rotation
-            	  //anim.setFillAfter(true);
-                   final Handler handler = new Handler();
-                   handler.postDelayed(new Runnable() {
-                     @Override
-                     @TargetApi(14)
-                     public void run() {
-                    	 //anim.cancel();
-                    	 findViewById(R.id.imageView1).setRotation(90 + startPoint);
-                     }
-                   }, spinDuration);
-                   findViewById(R.id.imageView1).startAnimation(anim); 
-            }
-        } );
-        
-      */
-      
-        /*
-        anim.setAnimationListener(new Animation.AnimationListener() {
-        @Override
-        @TargetApi(14)
-        public void onAnimationStart(Animation animation) {
-        	//imageview.setRotation(90 + startPoint);
-        }
-
-        @Override
-        @TargetApi(14)
-        public void onAnimationEnd(Animation animation) {
-        	imageview.setRotation(90 + startPoint);
-
-        }
-
-        @Override
-        public void onAnimationRepeat(Animation animation) {
-
-        }
-    }); 
-    //Cancels the spinning *FOR TESTING - NOT RELEASE VERSION*
-       
-       
-    stopButton.setOnClickListener(new View.OnClickListener() {
-    	@TargetApi(14)
-        public void onClick(View v) {
-        	anim.cancel();
-        	imageview.setRotation(90 + startPoint);
-        }});
-
-    //Resets wheel orientation *FOR TESTING - NOT RELEASE VERSION*
-    resetButton.setOnClickListener(new View.OnClickListener() {
-    	@TargetApi(14)
-        public void onClick(View v) {
-    		imageview.setRotation(startPoint);  //Sets initial angle (resets to start)
-        }
-    });
-    */  
-        
-        
-        
         
     }
 
@@ -275,19 +159,6 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	xPivot = (int)(widthScreen / 2.5);
     	yPivot = (int)(heightScreen / 2.3);
     }
-    
-    //Gets message from FillWheel.java
-    /*public String getMessageFromIntent(){
-    	int widthScreen = this.getResources().getDisplayMetrics().widthPixels;
-    	int heightScreen = this.getResources().getDisplayMetrics().heightPixels;
-    	
-    	Intent intent = getIntent();
-        String message = intent.getStringExtra(FillWheel.EXTRA_MESSAGE);
-        String x = ListOfOptions(diningList);
-        int width = findViewById(R.id.dOptionOne).getMeasuredWidth();
-        String messageOptions = "Height = " + heightScreen + " width = " + widthScreen + " " + message + " " + x + " and th value for width is " + width;
-    	return messageOptions;
-    }*/
     
     //Displays in a string the options that should show up on the wheel
     public String ListOfOptions(String[] diningList){
@@ -346,7 +217,6 @@ public class DisplayMessageActivity extends ActionBarActivity {
     		numChoicesOnWheel = foods.size();
     	}
  
-    	
     	int i = 0;
     	for (Foodies f : foods){
     		if (i < numChoicesOnWheel){
@@ -461,11 +331,6 @@ public class DisplayMessageActivity extends ActionBarActivity {
     
     //rotates individual text views all at once
     public void rotateWordsForWheel() {
-    	//Rotate words around point (xPivot, yPivot)
-    	//int height = findViewById(R.id.dOptionOne).getMeasuredHeight();
-    	//int width = findViewById(R.id.dOptionOne).getMeasuredWidth();
-    	//pulsates differently based on screen dimensions
-    	//double inf = 0; //Double.POSITIVE_INFINITY;
 
     	ArrayList<RotateAnimation> animations = new ArrayList<RotateAnimation>();
     	for(int q = 0; q < numChoicesOnWheel; q++){
