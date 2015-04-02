@@ -1,0 +1,42 @@
+public final float endPoint = -1350; // randomWithRange(360, 800);
+	public final int spinDuration = 8000; //randomWithRange(1000, 4000); //random duration between 1 & 4 seconds
+	public static final int repeatCount = 0; //(int)Double.POSITIVE_INFINITY;
+	public final float startPoint = 11.25f;  //initial angle of wheel view
+	//Log.d(constants.TAG, "Duration: "+ spinDuration+", Repeat Count: "+repeatCount);
+	
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        final RotateAnimation anim = new RotateAnimation(startPoint, endPoint + startPoint, //2nd float sets target angle
+    	        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        final Button spinButton = (Button) findViewById(R.id.button1);
+        final Button stopButton = (Button) findViewById(R.id.button2);
+        final Button resetButton = (Button) findViewById(R.id.button3);
+        
+      //TextView that should display the current value of the wheel's duration
+        final TextView durationTracker = (TextView) this.findViewById(R.id.textView1);
+        durationTracker.setText(String.valueOf(spinDuration));
+ 
+        //Spins the image when the Spin button is pressed
+        spinButton.setOnClickListener(new View.OnClickListener() {
+        	@TargetApi(14)
+            public void onClick(View v) {
+            	findViewById(R.id.imageView1).setRotation(0);  //Sets initial angle (resets to start)
+            	   anim.setInterpolator(new AccelerateInterpolator(-0.1f));  //LinearInterpolator()
+            	   anim.setRepeatCount(repeatCount);
+            	   anim.setDuration(spinDuration); //sets duration of rotation
+            	  //anim.setFillAfter(true);
+                   final Handler handler = new Handler();
+                   handler.postDelayed(new Runnable() {
+                     @Override
+                     @TargetApi(14)
+                     public void run() {
+                    	 //anim.cancel();
+                   	     findViewById(R.id.imageView1).setRotation(90 + startPoint);
+                     }
+                   }, spinDuration);
+                   ((View) findViewById(R.id.imageView1)).startAnimation(anim); 
+            }
+        });
