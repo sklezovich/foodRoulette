@@ -74,7 +74,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
 		}
 		public final float endPoint = 450; // randomWithRange(360, 800);
 		public final int spinDuration = 4000; //randomWithRange(1000, 4000); //random duration between 1 & 4 seconds
-		public static final int repeatCount = 0; //(int)Double.POSITIVE_INFINITY;
+		public static final int repeatCount = 30; //(int)Double.POSITIVE_INFINITY;
 		public final float startPoint = 11.25f;  //initial angle of wheel view
 		//Log.d(constants.TAG, "Duration: "+ spinDuration+", Repeat Count: "+repeatCount);
 
@@ -121,6 +121,26 @@ public class DisplayMessageActivity extends ActionBarActivity {
  	   anim.setDuration(spinDuration); //sets duration of rotation
  	   imageview.setRotation(42 + startPoint);
  	   imageview.startAnimation(anim); 
+ 	   
+ 	  /*anim.setAnimationListener(new Animation.AnimationListener() {
+       @Override
+       @TargetApi(14)
+       public void onAnimationStart(Animation animation) {
+       	//findViewById(R.id.imageView1).setRotation(90 + startPoint);
+       }
+
+       @Override
+       @TargetApi(14)
+       public void onAnimationEnd(Animation animation) {
+       	findViewById(R.id.imageView1).setRotation(90 + startPoint);
+
+       }
+
+       @Override
+       public void onAnimationRepeat(Animation animation) {
+
+       }
+   }); */
         
     }
 
@@ -426,19 +446,5 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	double x = (double)i / (double)numOptions * 8.0;
     	double variable = 8.2016 * Math.sin(0.79617 * x - 1.614);
     	return variable;
-    }
-    
-    //rotates the entire linear layout that contains all of the text views
-    public void rotateView(){
-    	//Rotate words around point (xPivot, yPivot)
-    	/*LinearLayout layout1 = (LinearLayout) findViewById(R.id.circleWords);
-    	Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotatewords);
-        layout1.setAnimation(anim);
-        layout1.startAnimation(anim);*/
-        
-    	//LinearLayout layout1 = (LinearLayout) findViewById(R.id.circleWords);
-    	//Animation rotateAnim = AnimationUtils.loadAnimation(this, R.anim.rotatewords);
-        //LayoutAnimationController animController = new LayoutAnimationController(rotateAnim, 0);
-        //layout1.setLayoutAnimation(animController);
     }
 }
