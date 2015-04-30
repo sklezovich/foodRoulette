@@ -55,22 +55,22 @@ public class PreferencesActivity extends ActionBarActivity implements OnRatingBa
    String[] args;
    Button spin;
    private static String cuisiney;
-	private static String name = "";
-	private static int price;
-	private static double rating;
-	private static double distancey;
-	private static String lat;
-	private static String lng;
+   private static String name = "";
+   private static int price;
+   private static double rating;
+   private static double distancey;
+   private static String lat;
+   private static String lng;
 	
-	private static Collection<String> preferences;
-	private static Collection<Foodies> done = new ArrayList<Foodies>();
+   private static Collection<String> preferences;
+   private static Collection<Foodies> done = new ArrayList<Foodies>();
 	
-	private static final String CONSUMER_KEY = "2-9FkxPyl4-R-8ouw9Ilww";
-	private static final String CONSUMER_SECRET = "894AUSkNSOvx_Smt7VBssFieSNQ";
-	private static final String TOKEN = "qB13Ii8bQ3jToJxQRsI9L3huiikX01Bd";
-	private static final String TOKEN_SECRET = "BTcOJmACrxAg6jBJ_trM3nXCfvs";
-	OAuthService service;
-	Token accessToken;
+   private static final String CONSUMER_KEY = "2-9FkxPyl4-R-8ouw9Ilww";
+   private static final String CONSUMER_SECRET = "894AUSkNSOvx_Smt7VBssFieSNQ";
+   private static final String TOKEN = "qB13Ii8bQ3jToJxQRsI9L3huiikX01Bd";
+   private static final String TOKEN_SECRET = "BTcOJmACrxAg6jBJ_trM3nXCfvs";
+   OAuthService service;
+   Token accessToken;
 	
 	public PreferencesActivity() {
  	}
@@ -84,15 +84,18 @@ public class PreferencesActivity extends ActionBarActivity implements OnRatingBa
         
         setContentView(R.layout.activity_preferences);
      
-     spin = (Button) findViewById(R.id.button_SPIN);
-     spin.setOnClickListener(this);
-
-    RatingBar ratings = (RatingBar) findViewById(R.id.ratingBar_ratings);
-    ratings.setOnRatingBarChangeListener(this);
+        spin = (Button) findViewById(R.id.button_SPIN);
+        spin.setOnClickListener(this);
+        
+        //5-star rating bar initialization
+        RatingBar ratings = (RatingBar) findViewById(R.id.ratingBar_ratings);
+        ratings.setOnRatingBarChangeListener(this);
     
-    distances = (SeekBar) findViewById(R.id.seekBar_distance);
-    
-    distances.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+        //distance slider bar initialization 
+        distances = (SeekBar) findViewById(R.id.seekBar_distance);
+        distances.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+        
+        //methods for the distance slider bar
     	@Override
     	public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
     		distance = progressValue;
@@ -112,6 +115,8 @@ public class PreferencesActivity extends ActionBarActivity implements OnRatingBa
     });
     }
     
+    /*async task to run the application in the background. When preferences are inputed,
+     program searches through Yelp for results */
     class preferencesThread extends AsyncTask< String, Void,String> {
         public preferencesThread(PreferencesActivity preferencesActivity) {
 		}
@@ -161,39 +166,26 @@ public class PreferencesActivity extends ActionBarActivity implements OnRatingBa
             return "";
         }
 		
+		/*After the user presses the "spin" button, the Yelp results list randomizes
+		 and passes to the DisplayMessageActivity to display on the wheel*/
         @Override
         protected void onPostExecute(String result) {
         	int i = 1;
         	Collection<Foodies> whatever = FoodfActivity.Random(args,done,numstars);
-        	
-        	//whatever is what we want!!!!
-        	//can either pass as a parameter right here or make an over-arching variable
-        	//if pass, call intent here? 
-        	
-        	//comment bottom portion during integration 
         	String[] stringArr = new String[whatever.size()];
         	Collection<Foodies> sfg = whatever;
         	
         	int j = 0;
-        		for (Foodies f: whatever){
+        	for (Foodies f: whatever){
         		stringArr[j] = f.toString();
-        			j++;
-        		}        	
+        		j++;
+        	}
+        	
         	Bundle bundle = new Bundle(); 
         	bundle.putStringArray("key", stringArr);
         	basdf.putExtras(bundle);
         	startActivity(basdf);
-        	//startActivity((basdf, DisplayMessageActivity.class)); //sketchy
-        	//for (Foodies f: whatever){
-        		//Log.v("PA",i+". "+f.toString());
-    
-        		//ugh.setText("a");//not doing anything?
-        		//TextView myT = new TextView(null);
-        		//yT.setText(f.toString());
-        		
-        		//ugh.setText(f.toString());
-        		//ugh.addView(myT);
-        		i++;
+        	i++;
         }
         
        @Override
@@ -256,14 +248,11 @@ public class PreferencesActivity extends ActionBarActivity implements OnRatingBa
 	public void onClick(View v) {	
 		switch(v.getId()) {
 			case R.id.button_SPIN:
-				
 				ArrayList<String> ip = new ArrayList<String> ();
 				ip = cuisine;
 				preferences = ip;
 				preferencesThread preT = new preferencesThread(this);
 				preT.execute("");
-				//startActivity(basdf);
-				//startActivity(new Intent (this, DisplayMessageActivity.class));	
 			break;
 		}
 	}

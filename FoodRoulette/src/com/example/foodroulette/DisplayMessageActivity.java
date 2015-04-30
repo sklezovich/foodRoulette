@@ -47,9 +47,9 @@ import com.example.foodroulette.PreferencesActivity.preferencesThread;
 @SuppressLint("NewApi")
 public class DisplayMessageActivity extends ActionBarActivity {
 
+	//This is a sample list of dining places used for testing purposes
 	String[] diningList = {"Red Robin", "Salty's", "Subway", "Burger King", "Denny's", "Saigon Deli", "IHOP", "Applebee's",
 			"KFC", "Cracker Barrel", "Spaghetti Factory", "Olive Garden", "Luna Cafe", "Husky Deli", "QFC", "Safeway", "Outback", "Purple Cafe"};
-	//String[] sashaStuff = Collection.toArray(new String[sashaStuff.size]);
 	int numChoicesOnWheel = 16;
 	int listLength = diningList.length;
 	int xPivot = 335;
@@ -63,20 +63,19 @@ public class DisplayMessageActivity extends ActionBarActivity {
 	
 	//final ImageView imageview = new ImageView(this);
 	
-	
-	
-	
 	    //returns a random long between min and max!
 		long randomWithRange(int min, int max)
 		{
 		   int range = (max - min) + 1;     
 		   return (long)(Math.random() * range) + min;
 		}
-		public final float endPoint = 450; // randomWithRange(360, 800);
-		public final int spinDuration = 4000; //randomWithRange(1000, 4000); //random duration between 1 & 4 seconds
+		public final float endPoint = 1080; // randomWithRange(360, 800);
+		public final int spinDuration = 8000; //randomWithRange(1000, 4000); //random duration between 1 & 4 seconds
 		public static final int repeatCount = 0; //(int)Double.POSITIVE_INFINITY;
 		public final float startPoint = 11.25f;  //initial angle of wheel view
 		//Log.d(constants.TAG, "Duration: "+ spinDuration+", Repeat Count: "+repeatCount);
+		
+		RotateAnimation anim = null;
 
 		
 		
@@ -114,31 +113,17 @@ public class DisplayMessageActivity extends ActionBarActivity {
         //rotates the words
         rotateWordsForWheel();
         
-        final RotateAnimation anim = new RotateAnimation(startPoint, endPoint + startPoint, //2nd float sets target angle
+        anim = new RotateAnimation(startPoint, endPoint, //2nd float sets target angle
     	        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
  	   anim.setInterpolator(new AccelerateInterpolator(0.1f));
  	   anim.setRepeatCount(repeatCount);
  	   anim.setDuration(spinDuration); //sets duration of rotation
- 	   imageview.setRotation(42 + startPoint);
+ 	   imageview.setRotation(startPoint);
  	   imageview.startAnimation(anim); 
-        
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class PlaceholderFragment extends Fragment {
 
         public PlaceholderFragment() { }
@@ -160,7 +145,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	yPivot = (int)(heightScreen / 2.3);
     }
     
-    //Displays in a string the options that should show up on the wheel
+    //Testing case: Displays in a string the options that should show up on the wheel
     public String ListOfOptions(String[] diningList){
     	if (listLength < numChoicesOnWheel){
     		numChoicesOnWheel = listLength;
@@ -222,7 +207,6 @@ public class DisplayMessageActivity extends ActionBarActivity {
     		if (i < numChoicesOnWheel){
     			//sets what is in the textView
     			
-    			
             	//String diningOptionX = diningOption(f.name(), i);
             	TextView Option = new TextView(this);
             	Option.setText(f.name());
@@ -257,37 +241,9 @@ public class DisplayMessageActivity extends ActionBarActivity {
             	
             	frameLayout.addView(Option, params);
         		i++;
-        	}
+    		}}
     	}
     	
-        
-    }
-    
-    public void onClick(View v) {
-    	switch(v.getId()) {
-			case R.id.button1:
-				setContentView(frameLayout);
-		        
-		        rotateWordsForWheel();
-		        
-		        final RotateAnimation anim = new RotateAnimation(startPoint, endPoint + startPoint, //2nd float sets target angle
-		    	        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-		 	   anim.setInterpolator(new AccelerateInterpolator(0.1f));
-		 	   anim.setRepeatCount(repeatCount);
-		 	   anim.setDuration(spinDuration); //sets duration of rotation
-		 	   imageview.setRotation(42 + startPoint);
-		 	   imageview.startAnimation(anim); 
-				
-			break;
-    	}
-    }
-    
-    
-    //turns the restaurant names into an array of strings
-    //public String diningOption(String string, int i){
-    	//String option = string[i];
-    //	return option;
-    //}
     
     //sets the distance between the text view of a restaurant name and the center of the pivot point in the x direction
     public double setPaddingX(int i, int numOptions, int screenVariable) {
@@ -331,7 +287,6 @@ public class DisplayMessageActivity extends ActionBarActivity {
     
     //rotates individual text views all at once
     public void rotateWordsForWheel() {
-
     	ArrayList<RotateAnimation> animations = new ArrayList<RotateAnimation>();
     	for(int q = 0; q < numChoicesOnWheel; q++){
     		double calculatedX = 0; //Placeholder value - awaiting Marshall's equation
@@ -339,8 +294,8 @@ public class DisplayMessageActivity extends ActionBarActivity {
     		double calculatedY = 0; //Placeholder value - awaiting Marshall's equation
     		calculatedY = findYFloat (q, numChoicesOnWheel);
     		//RotateAnimation newAnimation = new RotateAnimation(0f, endPoint + startPoint, Animation.RELATIVE_TO_PARENT, 0.25f, 
-    				//Animation.RELATIVE_TO_PARENT, 0.5f);
-    		RotateAnimation newAnimation = new RotateAnimation(0f, endPoint + startPoint, Animation.RELATIVE_TO_SELF, (float)calculatedX, 
+    		//Animation.RELATIVE_TO_PARENT, 0.5f);
+    		RotateAnimation newAnimation = new RotateAnimation(startPoint, endPoint, Animation.RELATIVE_TO_SELF, (float)calculatedX, 
     				Animation.RELATIVE_TO_SELF, (float)calculatedY);
     		newAnimation.setInterpolator(new AccelerateInterpolator(0.1f));
     		newAnimation.setRepeatCount(repeatCount);
@@ -428,17 +383,6 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	return variable;
     }
     
-    //rotates the entire linear layout that contains all of the text views
     public void rotateView(){
-    	//Rotate words around point (xPivot, yPivot)
-    	/*LinearLayout layout1 = (LinearLayout) findViewById(R.id.circleWords);
-    	Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotatewords);
-        layout1.setAnimation(anim);
-        layout1.startAnimation(anim);*/
-        
-    	//LinearLayout layout1 = (LinearLayout) findViewById(R.id.circleWords);
-    	//Animation rotateAnim = AnimationUtils.loadAnimation(this, R.anim.rotatewords);
-        //LayoutAnimationController animController = new LayoutAnimationController(rotateAnim, 0);
-        //layout1.setLayoutAnimation(animController);
     }
 }

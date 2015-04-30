@@ -10,7 +10,6 @@
     <issue id="AppCompatMethod" severity="ignore" />
     <issue id="AppCompatResource" severity="ignore" />
     <issue id="Assert" severity="ignore" />
-    <issue id="BackButton" severity="ignore" />
     <issue id="ButtonCase" severity="ignore" />
     <issue id="ButtonOrder" severity="ignore" />
     <issue id="ButtonStyle" severity="ignore" />
@@ -31,7 +30,6 @@
     <issue id="DuplicateIds" severity="ignore" />
     <issue id="DuplicateIncludedIds" severity="ignore" />
     <issue id="DuplicateUsesFeature" severity="ignore" />
-    <issue id="EasterEgg" severity="ignore" />
     <issue id="EnforceUTF8" severity="ignore" />
     <issue id="ExportedContentProvider" severity="ignore" />
     <issue id="ExportedPreferenceActivity" severity="ignore" />
@@ -39,14 +37,12 @@
     <issue id="ExportedService" severity="ignore" />
     <issue id="ExtraText" severity="ignore" />
     <issue id="ExtraTranslation" severity="ignore" />
-    <issue id="FieldGetter" severity="ignore" />
     <issue id="FloatMath" severity="ignore" />
     <issue id="GetInstance" severity="ignore" />
     <issue id="GifUsage" severity="ignore" />
     <issue id="GradleCompatible" severity="ignore" />
     <issue id="GradleDependency" severity="ignore" />
     <issue id="GradleDeprecated" severity="ignore" />
-    <issue id="GradleDynamicVersion" severity="ignore" />
     <issue id="GradleGetter" severity="ignore" />
     <issue id="GradleIdeError" severity="ignore" />
     <issue id="GradleOverrides" severity="ignore" />
@@ -61,7 +57,6 @@
     <issue id="IconDipSize" severity="ignore" />
     <issue id="IconDuplicates" severity="ignore" />
     <issue id="IconDuplicatesConfig" severity="ignore" />
-    <issue id="IconExpectedSize" severity="ignore" />
     <issue id="IconExtension" severity="ignore" />
     <issue id="IconLauncherShape" severity="ignore" />
     <issue id="IconLocation" severity="ignore" />
@@ -108,7 +103,6 @@
     <issue id="NestedScrolling" severity="ignore" />
     <issue id="NestedWeights" severity="ignore" />
     <issue id="NewApi" severity="ignore" />
-    <issue id="NewerVersionAvailable" severity="ignore" />
     <issue id="NfcTechWhitespace" severity="ignore" />
     <issue id="NotSibling" severity="ignore" />
     <issue id="ObsoleteLayoutParam" severity="ignore" />
@@ -133,15 +127,10 @@
     <issue id="ResourceAsColor" severity="ignore" />
     <issue id="ResourceCycle" severity="ignore" />
     <issue id="ResourceName" severity="ignore" />
-    <issue id="RtlCompat" severity="ignore" />
-    <issue id="RtlEnabled" severity="ignore" />
-    <issue id="RtlHardcoded" severity="ignore" />
-    <issue id="RtlSymmetry" severity="ignore" />
     <issue id="ScrollViewCount" severity="ignore" />
     <issue id="ScrollViewSize" severity="ignore" />
     <issue id="SdCardPath" severity="ignore" />
     <issue id="SecureRandom" severity="ignore" />
-    <issue id="SelectableText" severity="ignore" />
     <issue id="ServiceCast" severity="ignore" />
     <issue id="SetJavaScriptEnabled" severity="ignore" />
     <issue id="ShowToast" severity="ignore" />
@@ -150,7 +139,6 @@
     <issue id="SmallSp" severity="ignore" />
     <issue id="SpUsage" severity="ignore" />
     <issue id="StateListReachable" severity="ignore" />
-    <issue id="StopShip" severity="ignore" />
     <issue id="StringFormatCount" severity="ignore" />
     <issue id="StringFormatInvalid" severity="ignore" />
     <issue id="StringFormatMatches" severity="ignore" />
@@ -166,14 +154,12 @@
     <issue id="TypographyEllipsis" severity="ignore" />
     <issue id="TypographyFractions" severity="ignore" />
     <issue id="TypographyOther" severity="ignore" />
-    <issue id="TypographyQuotes" severity="ignore" />
     <issue id="Typos" severity="ignore" />
     <issue id="UniquePermission" severity="ignore" />
     <issue id="UnknownId" severity="ignore" />
     <issue id="UnknownIdInLayout" severity="ignore" />
     <issue id="UnlocalizedSms" severity="ignore" />
     <issue id="UnusedAttribute" severity="ignore" />
-    <issue id="UnusedIds" severity="ignore" />
     <issue id="UnusedNamespace" severity="ignore" />
     <issue id="UnusedQuantity" severity="ignore" />
     <issue id="UnusedResources" severity="ignore" />

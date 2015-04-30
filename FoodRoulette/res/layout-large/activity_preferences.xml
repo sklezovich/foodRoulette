@@ -256,7 +256,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="South American"
-            android:textSize="10sp" />
+            android:textSize="40sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Vietnamese"

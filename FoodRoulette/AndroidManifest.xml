@@ -39,11 +39,8 @@
             android:label="@string/title_activity_foodf" >
         </activity
         -->
-        <activity
-            android:name=".ExportDatabaseCSVTask"
-            android:label="@string/title_activity_export_database_csvtask" >
-        </activity>
-        <activity
+       
+            <activity
             android:name=".PrintPLease"
             android:label="@string/title_activity_print_please" >
         </activity>

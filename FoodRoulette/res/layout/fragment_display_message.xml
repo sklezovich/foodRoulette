@@ -175,7 +175,7 @@
      <ImageView
          android:id="@+id/imageView1"
          android:layout_width="fill_parent"
-         android:layout_height="430dp"
+         android:layout_height="match_parent"
          android:contentDescription="@string/hello_world"
          android:rotation="11.25"
          android:src="@drawable/roulettewheelfixed" />
@@ -188,5 +188,5 @@
          android:gravity="top"
          android:text="Spin!"
          android:visibility="visible" />
- 
+     
 </FrameLayout>
