@@ -69,9 +69,11 @@ public class DisplayMessageActivity extends ActionBarActivity {
 		   int range = (max - min) + 1;     
 		   return (long)(Math.random() * range) + min;
 		}
+
 		public final float endPoint = 1080; // randomWithRange(360, 800);
 		public final int spinDuration = 8000; //randomWithRange(1000, 4000); //random duration between 1 & 4 seconds
 		public static final int repeatCount = 0; //(int)Double.POSITIVE_INFINITY;
+
 		public final float startPoint = 11.25f;  //initial angle of wheel view
 		//Log.d(constants.TAG, "Duration: "+ spinDuration+", Repeat Count: "+repeatCount);
 		
@@ -120,7 +122,6 @@ public class DisplayMessageActivity extends ActionBarActivity {
  	   anim.setDuration(spinDuration); //sets duration of rotation
  	   imageview.setRotation(startPoint);
  	   imageview.startAnimation(anim); 
-
     }
 
 
@@ -385,4 +386,5 @@ public class DisplayMessageActivity extends ActionBarActivity {
     
     public void rotateView(){
     }
+
 }
