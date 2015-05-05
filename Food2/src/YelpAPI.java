@@ -1,19 +1,14 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Locale;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
 import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
-import com.beust.jcommander.JCommander;
+
 import com.beust.jcommander.Parameter;
 
 /**

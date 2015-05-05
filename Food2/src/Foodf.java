@@ -1,20 +1,12 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 import org.json.simple.JSONObject;
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
-
-import com.beust.jcommander.JCommander;
-
-//will take in the preferences and search the Foodies object for 
-//matches
 
 public class Foodf {
 	private static String cuisine;
@@ -26,7 +18,7 @@ public class Foodf {
 	private static String lng;
 	
 	private static Collection<String> preferences;
-	//private static double ratings = 0.0;
+	private static double ratings;
 	private static double r;
 	private static int pricings;
 	private static double distances;
@@ -72,9 +64,9 @@ public class Foodf {
 	}
 	
 	//call method which produces the randomc
-	public static Collection<Foodies> Random(String[] args){
+	public static Collection<Foodies> Random(String[] args, double rar){
 		getListy(args);
-		//done = searchByRating();
+		done = searchByRating(rar);
 		Collections.shuffle((List<?>) done); 
 		return done;  
 	}
@@ -84,7 +76,7 @@ public class Foodf {
 		Collection<Foodies> listy = new ArrayList<Foodies>();
 		YelpAPI.setLocation("Seattle", "WA");
 		for (String pref : preferences){
-			YelpAPI.setLimit(5);
+			YelpAPI.setLimit(20);
 			YelpAPI.setTerm(pref);
 			YelpAPI yelper = new YelpAPI(CONSUMER_KEY, CONSUMER_SECRET, TOKEN, TOKEN_SECRET);
 			YelpAPI.YelpAPICLI yelperApiCli = new YelpAPI.YelpAPICLI();
@@ -112,6 +104,16 @@ public class Foodf {
 	}
 	
 	//allows to limit search by the ratings
+	public static Collection<Foodies> searchByRating(double ratingsszss){
+		Collection<Foodies> temp = new ArrayList<Foodies>();
+		
+		for (Foodies f : done){
+			if (f.rating() >= ratingsszss){
+				temp.add(f);
+			}
+		}
+		return temp;
+	}
 	
 	
 	//allows for the calculation of distance from lat and lng coordinates
@@ -120,9 +122,9 @@ public class Foodf {
 		double lat1 = 47.605387; 
 		
 		int startIndex1 = location.indexOf("longitude");
-		lng = location.substring(startIndex1+11, startIndex1+22);
+		lng = location.substring(startIndex1+11, startIndex1+20);
 		int startIndex2 = location.indexOf("latitude");
-		lat = location.substring(startIndex2+10, startIndex2+19);
+		lat = location.substring(startIndex2+10, startIndex2+17);
 
 		double lng2 = Double.parseDouble(lng);
 		double lat2 = Double.parseDouble(lat);
