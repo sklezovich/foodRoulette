@@ -87,8 +87,6 @@ public class DisplayMessageActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        final Button spinButton = (Button) findViewById(R.id.button1);
-        
 		Bundle bundle = (Bundle) getIntent().getExtras();		
 		message = bundle.getStringArray("key"); //message = collection array
 		
@@ -108,6 +106,10 @@ public class DisplayMessageActivity extends ActionBarActivity {
         ImageView imageArrow = new ImageView(this);
         imageArrow.setImageResource(R.drawable.arrow);
         frameLayout.addView(imageArrow);
+        
+        //Button spinButton = (Button) this.findViewById(R.id.button1);
+        Button spinButton = new Button(this);
+        frameLayout.addView(spinButton);
 
         // Set the frameLayout as the activity layout
         setContentView(frameLayout);
