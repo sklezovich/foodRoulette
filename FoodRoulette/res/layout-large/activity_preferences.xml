@@ -10,119 +10,13 @@
 
     <Button
         android:id="@+id/button_SPIN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:minHeight="3dp"
         android:minWidth="35dp"
-        android:text="SPIN" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button_SPIN"
-        android:layout_alignParentLeft="true"
-        android:orientation="vertical" >
-
-        <CheckBox
-            android:id="@+id/checkBox_Bakeries"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-                        android:onClick="onCheckboxClicked"
-            android:text="Bakeries" />
-
-        <CheckBox
-            android:id="@+id/checkBox_Barbeque"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Barbeque"
-            android:textSize="25sp"
-            android:onClick="onCheckboxClicked" />
-
-        <CheckBox
-            android:id="@+id/checkBox_Breakfast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="Breakfast"
-           android:textSize="25sp" />
-
-        <CheckBox
-            android:id="@+id/checkBox_Buffets"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="Buffets"
-            android:textSize="25sp" />
-
-        <CheckBox
-            android:id="@+id/checkBox_Burgers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="Burgers"
-            android:textSize="25sp" />
-
-        <CheckBox
-            android:id="@+id/checkBox_Cafes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="Cafes"
-            android:textSize="25sp" />
-
-        <CheckBox
-            android:id="@+id/checkBox_Chinese"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="Chinese"
-            android:textSize="25sp" />
-
-        <CheckBox
-            android:id="@+id/checkBox_Desserts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Desserts"
-                        android:onClick="onCheckboxClicked"
-            android:textSize="25sp" />
-
-        <CheckBox
-            android:id="@+id/checkBox_Ethiopian"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="Ethiopian"
-            android:textSize="25sp" />
-
-        <CheckBox
-            android:id="@+id/checkBox_FastFood"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="Fast Food"
-            android:textSize="25sp" />
-
-        <CheckBox
-            android:id="@+id/checkBox_Indian"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="Indian"
-            android:textSize="25sp" />
-
-        <CheckBox
-            android:id="@+id/checkBox_Italian"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
-            android:text="Italian"
-            android:textSize="25sp" />
-
-    </LinearLayout>
+        android:text="SPIN"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -131,44 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text="Preferences"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_below="@+id/textView3"
-        android:text="Ratings"
-        android:textSize="20sp" />
-
-    <RatingBar
-        android:id="@+id/ratingBar_ratings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:numStars="5"
-        android:stepSize="0.5" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/seekBar_distance"
-        android:layout_below="@+id/ratingBar_ratings"
-        android:layout_marginTop="21dp"
-        android:text="Distance"
-        android:textSize="20sp" />
-
-    <SeekBar
-        android:id="@+id/seekBar_distance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linearLayout1"
-        android:layout_below="@+id/textView2"
-        android:max="20"
-        android:minHeight="20dp" />
+        android:textSize="40sp" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -176,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_SPIN"
         android:layout_alignRight="@+id/seekBar_distance"
+        android:layout_marginBottom="32dp"
         android:orientation="vertical" >
 
         <CheckBox
@@ -184,7 +42,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="Japanese"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Korean"
@@ -192,7 +50,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="Korean"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Mexican"
@@ -200,7 +58,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="Mexican"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Mediterranean"
@@ -208,7 +66,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="Mediterranean"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Pizza"
@@ -216,7 +74,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="Pizza"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Pubs"
@@ -224,7 +82,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="Pubs"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Sandwiches"
@@ -232,7 +90,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="Sandwiches"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Seafood"
@@ -240,7 +98,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="Seafood"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Southern"
@@ -248,7 +106,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="Southern"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <CheckBox
             android:id="@+id/checkBox_SouthAmerican"
@@ -256,7 +114,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="South American"
-            android:textSize="40sp" />
+            android:textSize="28sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Vietnamese"
@@ -264,7 +122,7 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="Vietnamese"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <CheckBox
             android:id="@+id/checkBox_Thai"
@@ -272,7 +130,150 @@
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
             android:text="Thai"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/seekBar_distance"
+        android:layout_alignLeft="@+id/seekBar_distance"
+        android:text="Distance"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ratingBar_ratings"
+        android:layout_below="@+id/textView3"
+        android:text="Ratings"
+        android:textSize="28sp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar_ratings"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:numStars="5"
+        android:stepSize="0.5" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/seekBar_distance"
+        android:layout_toLeftOf="@+id/linearLayout2"
+        android:orientation="vertical" >
+
+        <CheckBox
+            android:id="@+id/checkBox_Bakeries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Bakeries"
+            android:textSize="28sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_Barbeque"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Barbeque"
+            android:textSize="28sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_Breakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Breakfast"
+            android:textSize="28sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_Buffets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Buffets"
+            android:textSize="28sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_Burgers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Burgers"
+            android:textSize="28sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_Cafes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Cafes"
+            android:textSize="28sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_Chinese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Chinese"
+            android:textSize="28sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_Desserts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Desserts"
+            android:textSize="28sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_Ethiopian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Ethiopian"
+            android:textSize="28sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_FastFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Fast Food"
+            android:textSize="28sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_Indian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Indian"
+            android:textSize="28sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_Italian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Italian"
+            android:textSize="28sp" />
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/seekBar_distance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_alignLeft="@+id/ratingBar_ratings"
+        android:layout_marginBottom="21dp"
+        android:max="20"
+        android:minHeight="20dp" />
 
 </RelativeLayout>

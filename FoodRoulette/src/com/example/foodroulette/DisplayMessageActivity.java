@@ -219,7 +219,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
             	int numOptions = numChoicesOnWheel;                       
             	padX = setPaddingX(i, numOptions, screenVariable);                                               
             	padY = setPaddingY(i, numOptions, screenVariable);
-            	int xValue = (int) padX + xPivot;
+            	int xValue = (int) (padX + xPivot+ 5.2);
             	int yValue = (int) padY + yPivot;
             	//dOption1.setPadding(xValue, yValue, 0, 0);
             	
