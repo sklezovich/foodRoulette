@@ -107,10 +107,17 @@ public class DisplayMessageActivity extends ActionBarActivity {
         imageArrow.setImageResource(R.drawable.arrow);
         frameLayout.addView(imageArrow);
         
-        //Button spinButton = (Button) this.findViewById(R.id.button1);
+
         Button spinButton = new Button(this);
         frameLayout.addView(spinButton);
-
+        spinButton.setText("");
+        spinButton.setAlpha(0);
+        //spinButton.setWidth(LayoutParams.WRAP_CONTENT);
+        //spinButton.setHeight(LayoutParams.WRAP_CONTENT);
+        //spinButton.setWidth(this.getResources().getDisplayMetrics().widthPixels/6);
+        //spinButton.setHeight(this.getResources().getDisplayMetrics().heightPixels/12);
+        
+        
         // Set the frameLayout as the activity layout
         setContentView(frameLayout);
         
