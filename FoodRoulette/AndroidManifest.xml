@@ -5,6 +5,7 @@
     android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -31,18 +32,6 @@
         <activity
             android:name=".UserAccountActivity"
             android:label="@string/title_activity_user_account" >
-        </activity>
-
-        <!--
-        activity
-            android:name=".FoodfActivity"
-            android:label="@string/title_activity_foodf" >
-        </activity
-        -->
-       
-            <activity
-            android:name=".PrintPLease"
-            android:label="@string/title_activity_print_please" >
         </activity>
         <activity
             android:name=".DisplayMessageActivity"

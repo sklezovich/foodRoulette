@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.FrameLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -45,7 +46,7 @@ import com.example.foodroulette.PreferencesActivity.preferencesThread;
 
 
 @SuppressLint("NewApi")
-public class DisplayMessageActivity extends ActionBarActivity {
+public class DisplayMessageActivity extends ActionBarActivity implements OnClickListener{
 
 	//This is a sample list of dining places used for testing purposes
 	String[] diningList = {"Red Robin", "Salty's", "Subway", "Burger King", "Denny's", "Saigon Deli", "IHOP", "Applebee's",
@@ -57,6 +58,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
 	double padX = 0.0;
 	double padY = 0.0;
 	String[] message = null;
+	Button spinButton;
 	
 	FrameLayout frameLayout = null;
 	ImageView imageview = null;
@@ -78,14 +80,14 @@ public class DisplayMessageActivity extends ActionBarActivity {
 		//Log.d(constants.TAG, "Duration: "+ spinDuration+", Repeat Count: "+repeatCount);
 		
 		RotateAnimation anim = null;
+		
+		Collection<Foodies> foods = FoodfActivity.getBlahh();
 
-		
-		
-		
 		
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         
 		Bundle bundle = (Bundle) getIntent().getExtras();		
 		message = bundle.getStringArray("key"); //message = collection array
@@ -107,17 +109,13 @@ public class DisplayMessageActivity extends ActionBarActivity {
         imageArrow.setImageResource(R.drawable.arrow);
         frameLayout.addView(imageArrow);
         
-
-        Button spinButton = new Button(this);
-        frameLayout.addView(spinButton);
-        spinButton.setText("");
-        spinButton.setAlpha(0);
-        //spinButton.setWidth(LayoutParams.WRAP_CONTENT);
-        //spinButton.setHeight(LayoutParams.WRAP_CONTENT);
-        //spinButton.setWidth(this.getResources().getDisplayMetrics().widthPixels/6);
-        //spinButton.setHeight(this.getResources().getDisplayMetrics().heightPixels/12);
+        //spinButton = new Button(this);
+   	  spinButton = (Button) findViewById(R.id.button2);
+      spinButton.setOnClickListener(this);
+      frameLayout.addView(spinButton);
+      spinButton.setText("");
         
-        
+        //spinButton.setAlpha(0);
         // Set the frameLayout as the activity layout
         setContentView(frameLayout);
         
@@ -131,7 +129,41 @@ public class DisplayMessageActivity extends ActionBarActivity {
  	   anim.setDuration(spinDuration); //sets duration of rotation
  	   imageview.setRotation(startPoint);
  	   imageview.startAnimation(anim); 
-    }
+ 	  
+
+    }   
+            public void onClick(View v) {
+            	switch (v.getId()) { 
+    			case R.id.button2:
+    				
+    				
+    				int i = 0;
+    				/*Foodies f = null;
+            	
+    				int i = 0;
+    				if (i > 0){
+    					for (Foodies yummy : foods){
+    						f = yummy;
+    						i++;
+    					}
+    				}
+    				
+    				String lat = f.lat();
+    				String lng = f.lng();
+    				
+    				String parsation = "geo:0,0?q="+lat+","+lng+" ("+f.name()+")";
+    				Intent intent1 = new Intent(android.content.Intent.ACTION_VIEW, 
+    						Uri.parse(parsation));
+    				startActivity(intent1);
+    				
+    				Intent intent2 = new Intent(android.content.Intent.ACTION_VIEW, 
+    						Uri.parse("geo:0,0?q="+lat+","+lng+" (" + f.name() + ")"));
+    				startActivity(intent2);*/
+    				
+    				break;
+            	}
+
+        	}
 
 
     public static class PlaceholderFragment extends Fragment {
@@ -200,7 +232,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
     	int widthScreen = this.getResources().getDisplayMetrics().widthPixels;
     	int heightScreen = this.getResources().getDisplayMetrics().heightPixels;
     	int screenVariable = 0;
-    	Collection<Foodies> foods = FoodfActivity.getBlahh();
+    	//Collection<Foodies> foods = FoodfActivity.getBlahh();
     	Collections.shuffle((List<?>) foods);
     	if (widthScreen > heightScreen){
     		screenVariable = heightScreen;
@@ -395,5 +427,28 @@ public class DisplayMessageActivity extends ActionBarActivity {
     
     public void rotateView(){
     }
+
+
+    
+   /* public void goToMap(View spinButton){
+    	Foodies f = null;
+    	
+    	int i = 0;
+    	if (i > 0){
+    		for (Foodies yummy : foods){
+    			f = yummy;
+    			i++;
+    		}
+    	}
+    			
+    	double lat = Double.parseDouble(f.lat());
+    	double lng = Double.parseDouble(f.lng());
+
+    	Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
+    	Uri.parse("geo:0,0?q=lat,lng (" + f.name() + ")"));
+    	startActivity(intent);
+    	
+    	
+    } */
 
 }
