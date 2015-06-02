@@ -5,6 +5,7 @@ import android.widget.FrameLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.net.Uri;
+import android.util.Log;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -109,9 +110,12 @@ public class DisplayMessageActivity extends ActionBarActivity implements OnClick
         imageArrow.setImageResource(R.drawable.arrow);
         frameLayout.addView(imageArrow);
         
-        //spinButton = new Button(this);
-   	  spinButton = (Button) findViewById(R.id.button2);
+        spinButton = new Button(this);
+   	 // spinButton = (Button) findViewById(R.id.button2);
+   	  int pleasework = 87341770;
       spinButton.setOnClickListener(this);
+      pleasework++;
+      //im crying
       frameLayout.addView(spinButton);
       spinButton.setText("");
         
@@ -134,19 +138,21 @@ public class DisplayMessageActivity extends ActionBarActivity implements OnClick
     }   
             public void onClick(View v) {
             	switch (v.getId()) { 
-    			case R.id.button2:
-    				
-    				
-    				int i = 0;
-    				/*Foodies f = null;
             	
-    				int i = 0;
-    				if (i > 0){
+            	case -1:
+            		
+            		Foodies f = null;
+                	
+    				int i =0;
+    				if (i < 5){
     					for (Foodies yummy : foods){
-    						f = yummy;
+    						if (i <5){
+    							f = yummy;
+    						}
     						i++;
     					}
     				}
+  
     				
     				String lat = f.lat();
     				String lng = f.lng();
@@ -155,10 +161,13 @@ public class DisplayMessageActivity extends ActionBarActivity implements OnClick
     				Intent intent1 = new Intent(android.content.Intent.ACTION_VIEW, 
     						Uri.parse(parsation));
     				startActivity(intent1);
+            		
+            	break;
+            	
+    			case R.id.button2:
     				
-    				Intent intent2 = new Intent(android.content.Intent.ACTION_VIEW, 
-    						Uri.parse("geo:0,0?q="+lat+","+lng+" (" + f.name() + ")"));
-    				startActivity(intent2);*/
+    				// ha ha ha
+    				
     				
     				break;
             	}
